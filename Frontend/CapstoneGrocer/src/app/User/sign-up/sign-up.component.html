@@ -1,1 +1,19 @@
-<p>sign-up works!</p>
+<div>
+    <h2>Account Creation</h2>
+    <form [formGroup]="loginRef" (ngSubmit)="accountCreate()">
+        <label>First Name</label>
+        <input type="text" formControlName="firstname"/><br/>
+        <label>Last Name</label>
+        <input type="text" formControlName="lastname"/><br/>
+        <label>Email</label>
+        <input type="text" formControlName="email"/><br/>
+        <label>Phone Number</label>
+        <input type="text" formControlName="phone"/><br/>
+        <label>Password</label>
+        <input type="password" formControlName="password"/><br/>
+        <input type="submit" value="Sign Up"/>
+    </form>
+    <a routerLink="/signIn">Sign In</a>
+    <br/>
+    {{msg}}
+</div>
