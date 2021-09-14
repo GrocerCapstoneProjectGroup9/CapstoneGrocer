@@ -4,13 +4,14 @@ import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-unlock-users',
-  templateUrl: './unlock-users.component.html',
-  styleUrls: ['./unlock-users.component.css']
+  template: '<div>{{result}}<div>'
 })
 export class UnlockUsersComponent implements OnInit {
 
+  result = "";
+
   constructor(
-    public employee:EmployeeService
+    public employee:EmployeeService,
   ) { }
 
   ngOnInit(): void {
@@ -18,11 +19,13 @@ export class UnlockUsersComponent implements OnInit {
 
   //display locked accounts
   display(){
-
+    this.result=this.employee.getaccounts();
+    
   }
 
   //unlock accounts
   unlock(tempform:NgForm){
-    
+    let id = tempform.temp;
+    this.employee.unlockuser(id);
   }
 }

@@ -24,6 +24,8 @@ export class UpdateOrderStatusComponent implements OnInit {
 
     if (status == "Cancelled"){
       //obtain the user of the order and refund the amount and reason for cancellation
+      let orderid = tempform.id;
+      this.employee.refunduser(orderid);
     }
   }
 }
