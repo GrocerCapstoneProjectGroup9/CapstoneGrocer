@@ -20,9 +20,17 @@ export class EmployeeService {
     return this.http.post("http://localhost:9090/employee/changestatus",status,{responseType:'text'});
   }
 
+  refunduser(orderid:any){
+    return this.http.post("http://localhost:9090/employee/refunduser",orderid,{responseType:'text'});
+  }
+
   //unlock user
   unlockuser(user:any){
     return this.http.post("http://localhost:9090/employee/unlockuser",user,{responseType:'text'});
+  }
+
+  getaccounts(){
+    return this.http.post("http://localhost:9090/employee/getaccounts",'',{responseType:'text'});
   }
 
   //edit profile
