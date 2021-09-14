@@ -1,1 +1,14 @@
-<p>raise-ticket works!</p>
+<div>
+    <h2>Raise Ticket</h2>
+    <form [formGroup]="ticketRef" (ngSubmit)="">
+        <label>User ID</label>
+        <input type="text" formControlName="userid"/><br/>
+        <label>Reason for raising ticket</label>
+        <input type="text" formControlName="reason"/><br/>
+        <input type="submit" value="Submit Ticket"/>
+    </form>
+    <br/>
+    <br/>
+    {{msg}}
+    
+</div>
