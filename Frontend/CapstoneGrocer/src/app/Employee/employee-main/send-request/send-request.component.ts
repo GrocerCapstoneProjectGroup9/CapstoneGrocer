@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-send-request',
@@ -8,7 +9,9 @@ import { NgForm } from '@angular/forms';
 })
 export class SendRequestComponent implements OnInit {
 //initialize the service
-  constructor() { }
+  constructor(
+    public employee:EmployeeService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -16,7 +19,7 @@ export class SendRequestComponent implements OnInit {
   //change the temp names
   sendrequest(tempform:NgForm){
     let msg = tempform.temp;
-    this.tempser.storerequest(msg);
+    this.employee.storerequest(msg);
   }
 
 }
