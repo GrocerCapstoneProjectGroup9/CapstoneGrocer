@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-unlock-users',
@@ -12,4 +13,13 @@ export class UnlockUsersComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //display locked accounts
+  display(){
+
+  }
+
+  //unlock accounts
+  unlock(tempform:NgForm){
+    
+  }
 }
