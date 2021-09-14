@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-unlock-users',
@@ -8,7 +9,9 @@ import { NgForm } from '@angular/forms';
 })
 export class UnlockUsersComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public employee:EmployeeService
+  ) { }
 
   ngOnInit(): void {
   }

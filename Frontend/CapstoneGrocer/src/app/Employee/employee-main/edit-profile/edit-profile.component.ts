@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,7 +10,9 @@ import { NgForm } from '@angular/forms';
 export class EditProfileComponent implements OnInit {
 
   //initialize services
-  constructor() { }
+  constructor(
+    public employee:EmployeeService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -17,6 +20,6 @@ export class EditProfileComponent implements OnInit {
   //change temp variables
   changepass(tempform:NgForm){
     let pass = tempform.temp;
-    this.tempser.editpass(pass);
+    this.employee.editpass(pass);
   }
 }
