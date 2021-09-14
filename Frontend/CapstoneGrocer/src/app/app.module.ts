@@ -11,6 +11,7 @@ import { UpdateOrderStatusComponent } from './Employee/employee-main/update-orde
 import { UnlockUsersComponent } from './Employee/employee-main/unlock-users/unlock-users.component';
 import { EditProfileComponent } from './Employee/employee-main/edit-profile/edit-profile.component';
 import { LogoutComponent } from './Employee/employee-main/logout/logout.component';
+import { FromsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,9 @@ import { LogoutComponent } from './Employee/employee-main/logout/logout.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FromsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
