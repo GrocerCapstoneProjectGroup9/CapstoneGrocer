@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-raise-ticket',
@@ -10,20 +11,28 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./raise-ticket.component.css']
 })
 export class RaiseTicketComponent implements OnInit {
-  raiseTicketRef = new FormGroup({
-    email:new FormControl("",[Validators.required]),
-    issue:new FormControl("",[Validators.required])
-  })
-  msg:string=""
-  count:number=0;
-  constructor() { }
+
+  ticketRef = new FormGroup({
+    userid:new FormControl("",[Validators.required]),
+    reason:new FormControl("",[Validators.required])
+  });
+
+  // inside constructor goes something like: public ticketService: UsersService
+  constructor(public ticketService: UserService) { }
+  msg?:string
 
   ngOnInit(): void {
   }
-  raiseTicket() {
-    let rtvalues = this.raiseTicketRef.value
-    console.log(rtvalues.email);
-    console.log(rtvalues.issue)
-    this.raiseTicketRef.reset();
+
+  sendTicket(data:any){
+    if(data.userid != "" && data.reason != ""){
+      this.msg="Ticket sent";
+      // inside users service goes a function called storeTicketData that posts to a path in the backend using data
+      this.ticketService.storeTicketData(data);
+    }else{
+      this.msg="Enter correct user ID and a reason for your ticket";
+    }
+    
   }
+
 }
