@@ -20,13 +20,13 @@ export class UnlockUsersComponent implements OnInit {
 
   //display locked accounts
   display(){
-    this.result=this.employee.getaccounts();
+    //this.result=this.employee.getaccounts();
     
   }
 
   //unlock accounts
-  unlock(tempform:NgForm){
-    let id = tempform.temp;
+  unlock(unlockForm:NgForm){
+    let id = unlockForm.value.id;
     this.employee.unlockuser(id);
   }
 }
