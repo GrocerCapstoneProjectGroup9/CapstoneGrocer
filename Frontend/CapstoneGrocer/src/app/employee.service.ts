@@ -13,7 +13,7 @@ export class EmployeeService {
   //get employee
   getEmployee(email:any):Observable<any>
   {
-    return this.http.get("http://localhost:9090/api/employee/getEmployeeByEmail", email);
+    return this.http.get("http://localhost:9090/api/employee/getEmployeeByEmail/"+email);
   }
 
   //send request

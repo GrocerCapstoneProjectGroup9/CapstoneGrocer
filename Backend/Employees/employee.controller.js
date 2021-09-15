@@ -4,8 +4,8 @@ let objectId = require('mongodb').ObjectId;
 
 let getEmployeeByEmail = (req,res) =>
 {
-    let email = req.body.email;
-    console.log(req.body.email);
+    let email = req.params.email;
+    
     employeeModel.find({email:email}, (err, result)=>
     {
         if(err){console.error(err)}
