@@ -22,4 +22,13 @@ export class RaiseTicketComponent implements OnInit {
 
   sendTicket(data:any){
     if(data.userid != "" && data.reason != ""){
-      th
+      this.msg="Ticket sent";
+      // inside users service goes a function called storeTicketData that posts to a path in the backend using data
+      // this.ticketService.storeTicketData(data);
+    }else{
+      this.msg="Enter correct user ID and a reason for your ticket";
+    }
+    
+  }
+
+}
