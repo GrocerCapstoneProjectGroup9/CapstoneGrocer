@@ -17,8 +17,8 @@ export class SendRequestComponent implements OnInit {
   }
 
   //change the temp names
-  sendrequest(tempform:NgForm){
-    let msg = tempform.temp;
+  sendrequest(requestRef:NgForm){
+    let msg = requestRef.value.request;
     this.employee.storerequest(msg);
   }
 
