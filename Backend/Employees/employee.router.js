@@ -1,7 +1,7 @@
 let express = require('express');
 let router = express.Router();
 
-let EmployeeController = require('../employee.controller.js');
+let EmployeeController = require('./employee.controller.js');
 
 router.get('/getEmployeeByEmail', EmployeeController.getEmployeeByEmail);
 router.post('/addEmployee', EmployeeController.employeeUserDetails);
