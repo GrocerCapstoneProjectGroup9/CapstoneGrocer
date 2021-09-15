@@ -3,7 +3,7 @@ let router = express.Router();
 
 let EmployeeController = require('./employee.controller.js');
 
-router.get('/getEmployeeByEmail', EmployeeController.getEmployeeByEmail);
+router.get('/getEmployeeByEmail/:email', EmployeeController.getEmployeeByEmail);
 router.post('/addEmployee', EmployeeController.employeeUserDetails);
 router.delete('/deleteEmployeeById/:pid', EmployeeController.deleteEmployeeById);
 router.put('/editEmployeeProfile', EmployeeController.editEmployeeProfile);

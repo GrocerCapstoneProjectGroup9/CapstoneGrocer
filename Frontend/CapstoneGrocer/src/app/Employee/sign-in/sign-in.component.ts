@@ -29,8 +29,8 @@ export class SignInComponent implements OnInit {
     let employeePassword = employeeRef.employeePassword;
 
     this.employeeservice.getEmployee(employeeEmail).subscribe(result=>{
-      console.log(result);
-      this.foundemployee = result;
+      console.log(result[0]);
+      this.foundemployee = result[0].firstName;
     });
 
 
