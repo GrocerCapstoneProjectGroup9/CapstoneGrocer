@@ -4,7 +4,8 @@ import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-unlock-users',
-  template: '<div>{{result}}<div>'
+  templateUrl: './unlock-users.component.html',
+  styleUrls: ['./unlock-users.component.css']
 })
 export class UnlockUsersComponent implements OnInit {
 
