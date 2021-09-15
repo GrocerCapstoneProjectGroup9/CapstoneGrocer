@@ -1,1 +1,29 @@
-<p>edit-profile works!</p>
+<div>
+    <h2>Edit Profile</h2>
+    <form [formGroup]="editPasswordRef" (ngSubmit)="updatePassword(editPasswordRef.value)">
+        <label>New Password</label>
+        <input type="password" formControlName="newpass"/><br/>
+        <input type="submit" value="Update Password" [disabled]="!editPasswordRef.valid"/>
+    </form>
+    <br/>
+    <form [formGroup]="editAddressRef" (ngSubmit)="updateAddress(editAddressRef.value)">
+        <label>New Address</label>
+        <input type="text" formControlName="newaddress"/><br/>
+        <input type="submit" value="Update Address" [disabled]="!editAddressRef.valid"/>
+    </form>
+    <br/>
+    <form [formGroup]="editEmailRef" (ngSubmit)="updateEmail(editEmailRef.value)">
+        <label>New Email</label>
+        <input type="text" formControlName="newemail"/><br/>
+        <input type="submit" value="Update Email" [disabled]="!editEmailRef.valid"/>
+    </form>
+    <br/>
+    <form [formGroup]="editPhoneRef" (ngSubmit)="updatePhone(editPhoneRef.value)">
+        <label>New Phone Number</label>
+        <input type="text" formControlName="newphone"/><br/>
+        <input type="submit" value="Update Phone Number" [disabled]="!editPhoneRef.valid"/>
+    </form>
+    <br/>
+    {{msg}}
+    
+</div>

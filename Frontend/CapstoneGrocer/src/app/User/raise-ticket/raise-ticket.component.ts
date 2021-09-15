@@ -18,7 +18,7 @@ export class RaiseTicketComponent implements OnInit {
   });
 
   // inside constructor goes something like: public ticketService: UsersService
-  constructor(public ticketService: UserService) { }
+  constructor(public ticket: UserService) { }
   msg?:string
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class RaiseTicketComponent implements OnInit {
     if(data.userid != "" && data.reason != ""){
       this.msg="Ticket sent";
       // inside users service goes a function called storeTicketData that posts to a path in the backend using data
-      this.ticketService.storeTicketData(data);
+      this.ticket.storeTicketData(data);
     }else{
       this.msg="Enter correct user ID and a reason for your ticket";
     }
