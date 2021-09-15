@@ -10,6 +10,12 @@ export class EmployeeService {
 
   constructor(public http:HttpClient) { }
 
+  //get employee
+  getEmployee(email:any)
+  {
+    return this.http.get("http://localhost:9090/api/employee/getEmployeeByEmail", email);
+  }
+
   //send request
   storerequest(message:any){
     return this.http.post("http://localhost:9090/api/employee/storerequest",message);
