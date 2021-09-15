@@ -12,8 +12,6 @@ export class SignInComponent implements OnInit {
 
   defaultPassword:boolean = false;
 
-  foundEmployee:any;
-
   constructor(public router:Router, public employeeservice:EmployeeService) 
   {
 
@@ -27,9 +25,9 @@ export class SignInComponent implements OnInit {
     let employeeEmail = employeeRef.employeeEmail;
     let employeePassword = employeeRef.employeePassword;
 
-    this.foundEmployee = this.employeeservice.getEmployee(employeeEmail);
-
-    console.log(this.foundEmployee);
+    this.employeeservice.getEmployee(employeeEmail).subscribe(result=>{
+      console.log(result);
+    });
 
   }
 
