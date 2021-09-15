@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//Emloyee imports
-import { EmployeeMainComponent }  from './Employee/empoloyee-main/employee-main.component';
+//Employee imports
+import { EmployeeMainComponent }  from './Employee/employee-main/employee-main.component';
 import { EditProfileComponent } from './Employee/employee-main/edit-profile/edit-profile.component';
 import { LogoutComponent } from './Employee/employee-main/logout/logout.component';
 import { SendRequestComponent } from './Employee/employee-main/send-request/send-request.component';
@@ -10,8 +10,11 @@ import { UpdateOrderStatusComponent } from './Employee/employee-main/update-orde
 import { RaiseTicketComponent } from './User/raise-ticket/raise-ticket.component';
 import { UserMainComponent } from './User/user-main/user-main.component';
 import { CartComponent } from './User/user-main/cart/cart.component';
+import { MainComponent } from './main/main.component';
+
 const routes: Routes = [  
   //main component paths
+  {path: '/', redirectTo:'main', component:MainComponent},
 
   //Admin component paths
 

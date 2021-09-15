@@ -22,7 +22,6 @@ export class UserService {
         },
         (error) => console.log(error)
       );
-  
   }
 
   updatePassword(data: any): void {
@@ -77,4 +76,3 @@ export class UserService {
   savaCartItem(cItem:cartProduct){
     
   }
-}
