@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//Emloyee imports
+
+import { EmployeeMainComponent } from './Employee/employee-main/employee-main.component';
 import { EmployeeMainComponent }  from './Employee/empoloyee-main/employee-main.component';
 import { EditProfileComponent } from './Employee/employee-main/edit-profile/edit-profile.component';
 import { LogoutComponent } from './Employee/employee-main/logout/logout.component';
