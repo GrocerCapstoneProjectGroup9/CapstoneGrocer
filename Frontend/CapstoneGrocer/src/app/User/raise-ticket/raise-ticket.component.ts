@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-raise-ticket',
@@ -14,7 +15,7 @@ export class RaiseTicketComponent implements OnInit {
   });
 
   // inside constructor goes something like: public ticketService: UsersService
-  constructor() { }
+  constructor(public ticketService: UserService) { }
   msg?:string
 
   ngOnInit(): void {
@@ -24,7 +25,7 @@ export class RaiseTicketComponent implements OnInit {
     if(data.userid != "" && data.reason != ""){
       this.msg="Ticket sent";
       // inside users service goes a function called storeTicketData that posts to a path in the backend using data
-      // this.ticketService.storeTicketData(data);
+      this.ticketService.storeTicketData(data);
     }else{
       this.msg="Enter correct user ID and a reason for your ticket";
     }
