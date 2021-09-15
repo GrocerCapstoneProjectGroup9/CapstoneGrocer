@@ -18,8 +18,13 @@ export class EditProfileComponent implements OnInit {
   }
 
   //change temp variables
-  changepass(tempform:NgForm){
-    let pass = tempform.temp;
-    this.employee.editpass(pass);
+  changepass(editpass:NgForm){
+    let pass = editpass.value.pass;
+    let emp = sessionStorage.getItem("emp");
+    if (emp!=null){
+      let empjson = JSON.parse(emp);
+      let id = empjson._id;
+      this.employee.editpass(pass,id);
+    }
   }
 }

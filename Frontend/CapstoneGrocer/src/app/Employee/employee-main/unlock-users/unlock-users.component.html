@@ -1,1 +1,11 @@
-<p>unlock-users works!</p>
+<h1>Unlock User</h1>
+<body onload="display()">
+
+</body>
+<div>
+    <form #unlock = "ngForm" (ngSubmit) = "unlock(unlock)">
+        <label>Enter User Id</label>
+        <input type ="text" name="id">
+        <input type = "submit" value = "Submit">
+    </form>
+</div>
