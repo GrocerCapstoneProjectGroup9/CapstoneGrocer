@@ -12,7 +12,6 @@ router.put('/changeEmployeePassword/:eid',EmployeeController.changeEmployeePassw
 router.post('/storerequest', EmployeeController.storerequest);
 router.put('/changestatus', EmployeeController.changestatus);
 router.put('/unlockuser', EmployeeController.unlockuser);
-router.get('/getaccounts', EmployeeController.getaccounts);
 router.put('/editpass', EmployeeController.editpass);
 
 

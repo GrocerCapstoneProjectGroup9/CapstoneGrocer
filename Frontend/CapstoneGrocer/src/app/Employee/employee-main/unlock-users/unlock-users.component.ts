@@ -20,7 +20,9 @@ export class UnlockUsersComponent implements OnInit {
 
   //display locked accounts
   display(){
-    //this.result=this.employee.getaccounts();
+    this.employee.gettickets().subscribe(result => {
+      this.result=result;
+    })
     
   }
 
