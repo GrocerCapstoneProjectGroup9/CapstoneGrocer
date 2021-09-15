@@ -12,29 +12,25 @@ export class EmployeeService {
 
   //send request
   storerequest(message:any){
-    return this.http.post("http://localhost:9090/employee/storerequest",message,{responseType:'text'});
+    return this.http.post("http://localhost:9090/api/employee/storerequest",message);
   }
 
   //update status
-  changestatus(status:any){
-    return this.http.put("http://localhost:9090/employee/changestatus",status,{responseType:'text'});
-  }
-
-  refunduser(orderid:any){
-    return this.http.put("http://localhost:9090/employee/refunduser",orderid,{responseType:'text'});
+  changestatus(status:any, orderid:any){
+    return this.http.put("http://localhost:9090/api/employee/changestatus",{status:status,orderid:orderid});
   }
 
   //unlock user
   unlockuser(user:any){
-    return this.http.put("http://localhost:9090/employee/unlockuser",user,{responseType:'text'});
+    return this.http.put("http://localhost:9090/api/employee/unlockuser",user);
   }
 
   getaccounts(){
-    return this.http.get("http://localhost:9090/employee/getaccounts",'',{responseType:'text'});
+    return this.http.get("http://localhost:9090/api/employee/getaccounts");
   }
 
   //edit profile
-  editpass(pass:any){
-    return this.http.put("http://localhost:9090/employee/editpass",pass,{responseType:'text'});
+  editpass(pass:any, id:any){
+    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, id:id});
   }
 }

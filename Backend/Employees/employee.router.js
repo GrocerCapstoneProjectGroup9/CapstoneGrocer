@@ -9,4 +9,11 @@ router.delete('/deleteEmployeeById/:pid', EmployeeController.deleteEmployeeById)
 router.put('/editEmployeeProfile', EmployeeController.editEmployeeProfile);
 router.put('/changeEmployeePassword/:eid',EmployeeController.changeEmployeePassword);
 
+router.post('/storerequest', EmployeeController.storerequest);
+router.put('/changestatus', EmployeeController.changestatus);
+router.put('/unlockuser', EmployeeController.unlockuser);
+router.get('/getaccounts', EmployeeController.getaccounts);
+router.put('/editpass', EmployeeController.editpass);
+
+
 module.exports = router;
