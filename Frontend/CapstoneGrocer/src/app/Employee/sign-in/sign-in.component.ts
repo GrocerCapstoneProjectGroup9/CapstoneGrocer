@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { employee } from 'src/app/employee.model';
 import { EmployeeService } from 'src/app/employee.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-sign-in',
@@ -28,6 +29,7 @@ export class SignInComponent implements OnInit {
     this.employeeservice.getEmployee(employeeEmail).subscribe(result=>{
       console.log(result);
     });
+
 
   }
 
