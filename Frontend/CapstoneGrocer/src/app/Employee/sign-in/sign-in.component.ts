@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 })
 export class SignInComponent implements OnInit {
 
+  foundemployee:any;
+
   defaultPassword:boolean = false;
 
   constructor(public router:Router, public employeeservice:EmployeeService) 
@@ -28,6 +30,7 @@ export class SignInComponent implements OnInit {
 
     this.employeeservice.getEmployee(employeeEmail).subscribe(result=>{
       console.log(result);
+      this.foundemployee = result;
     });
 
 
