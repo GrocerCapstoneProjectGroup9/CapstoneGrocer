@@ -1,5 +1,6 @@
 let employeeModel = require('../employee.model.js');
 let objectId = require('mongodb').ObjectId;
+//add admin model
 
 let getEmployeeById = (req,res) =>
 {
@@ -99,5 +100,76 @@ let changeEmployeePassword = (req,res) =>
         }
     });
 }
+
+let storerequest = (req,res) => {
+    let message = req.body.message;
+    let request = new requestmodel({
+        message:message
+    });
+    messagemodel.insertMany([request],(err,res)=>{
+        if (!err){
+            res.send("Request added");
+        }
+    })
+}
+
+let changestatus = (req,res) => {
+    let status = req.params.status;
+    let orderid = req.params.orderid;
+    ordermodel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
+        if(!err){
+            if (result.nModified > 0){
+                res.send('Status updated.');
+            }
+            else{
+                res.send('Order not found');
+            }
+        }
+    })
+
+//unlocks a user account
+let unlockuser = (req,res) => {
+    let id = req.body.user;
+    usermodel.updateOne({_id:id},{$set:{lock:false}},(err,res) => {
+        if(!err){
+            if (result.nModified > 0){
+                res.send('User unlocked.');
+            }
+            else{
+                res.send('User not found');
+            }
+        }
+    })
+}
+
+//show all user accounts
+let getaccounts = (req,res) => {
+    let result = '';
+    usermodel.find({},(err,res) =>{
+        if(!err){
+            res.foreach(res =>{
+                result = ""
+            })
+            res.send(result);
+        }
+    })
+}
+
+//changes the employee password
+let editpass = (req,res) => {
+    let pass = req.params.pass;
+    let id = req.params.id;
+    employeeModel.updateOne({_id:id},{$set: {password:pass}}, (err,result) =>{
+        if (!err){
+            if (result.nModified > 0){
+                res.send('Password updated.');
+            }
+            else{
+                res.send('Employee not found');
+            }
+        }
+    })
+}
+
 
 module.exports = { employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeById, changeEmployeePassword };

@@ -5,7 +5,7 @@
         <input type="text" formControlName="userid"/><br/>
         <label>Reason for raising ticket</label>
         <input type="text" formControlName="reason"/><br/>
-        <input type="submit" value="Submit Ticket"/>
+        <input type="submit" value="Submit Ticket" [disabled]="!ticketRef.valid"/>
     </form>
     <br/>
     <br/>

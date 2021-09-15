@@ -18,7 +18,7 @@ import { OrderStatusComponent } from './User/user-main/order-status/order-status
 import { RaiseTicketComponent } from './User/raise-ticket/raise-ticket.component';
 import { ShopComponent } from './User/user-main/shop/shop.component';
 import { CartComponent } from './User/user-main/cart/cart.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
@@ -44,6 +44,7 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -10,8 +13,8 @@ import { UserService } from 'src/app/user.service';
 export class RaiseTicketComponent implements OnInit {
 
   ticketRef = new FormGroup({
-    userid:new FormControl(),
-    reason:new FormControl()
+    userid:new FormControl("",[Validators.required]),
+    reason:new FormControl("",[Validators.required])
   });
 
   // inside constructor goes something like: public ticketService: UsersService
