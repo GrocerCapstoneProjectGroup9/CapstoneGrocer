@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { employee } from 'src/app/employee.model';
+import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -11,17 +12,24 @@ export class SignInComponent implements OnInit {
 
   defaultPassword:boolean = false;
 
-  constructor(public router:Router) { }
+  foundEmployee:any;
+
+  constructor(public router:Router, public employeeservice:EmployeeService) 
+  {
+
+  }
 
   ngOnInit(): void {
   }
 
   loginEmployee(employeeRef:any)
   {
-    let employeeId = employeeRef.employeeId;
+    let employeeEmail = employeeRef.employeeEmail;
     let employeePassword = employeeRef.employeePassword;
 
+    this.foundEmployee = this.employeeservice.getEmployee(employeeEmail);
 
+    console.log(this.foundEmployee);
 
   }
 

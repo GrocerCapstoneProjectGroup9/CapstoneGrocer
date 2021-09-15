@@ -11,6 +11,8 @@ import { RaiseTicketComponent } from './User/raise-ticket/raise-ticket.component
 import { UserMainComponent } from './User/user-main/user-main.component';
 import { CartComponent } from './User/user-main/cart/cart.component';
 import { MainComponent } from './main/main.component';
+import { SignUpComponent } from './User/sign-up/sign-up.component';
+import { SignInComponent } from './Employee/sign-in/sign-in.component';
 
 const routes: Routes = [  
   //main component paths
@@ -19,17 +21,20 @@ const routes: Routes = [
   //Admin component paths
 
   //User component paths
+  {path:"raise-ticket",component:RaiseTicketComponent},
+  {path:"user-main",component:UserMainComponent},
+  {path:"cart",component:CartComponent},
+  {path:"user-sign-in", component:SignUpComponent},
 
   //Employee component paths
   { path: 'employeemain', component: EmployeeMainComponent},
+  { path: 'employeesignin', component: SignInComponent},
   { path: 'editprofile', component: EditProfileComponent},
   { path: 'logout', component: LogoutComponent},
   { path: 'sendrequest', component: SendRequestComponent},
   { path: 'unlockuser', component: UnlockUsersComponent},
   { path: 'updatestatus', component: UpdateOrderStatusComponent},
-  {path:"raise-ticket",component:RaiseTicketComponent},
-  {path:"user-main",component:UserMainComponent},
-  {path:"cart",component:CartComponent}
+  
 ];
 
 @NgModule({

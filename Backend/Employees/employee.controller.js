@@ -2,10 +2,10 @@ let employeeModel = require('../employee.model.js');
 let objectId = require('mongodb').ObjectId;
 //add admin model
 
-let getEmployeeById = (req,res) =>
+let getEmployeeByEmail = (req,res) =>
 {
-    let pid = req.params.pid;
-    employeeModel.find({_id: new ObjectId(pid)}, (erre, result)=>
+    let email = req.params.email;
+    employees.find({email:email}, (err, result)=>
     {
         if(err){console.error(err)}
         else
@@ -25,7 +25,7 @@ let employeeUserDetails = (req,res) =>
             password: 'defaultpassword'
         });
 
-    empoloyee.save((err,result) =>
+    employees.save((err,result) =>
     {
         if(err)
         {
@@ -42,7 +42,7 @@ let deleteEmployeeById = (req,res) =>
 {
     let pid = req.params.pid;
 
-    employeeModel.deleteOne({_id:pid}, (err,result) => 
+    employees.deleteOne({_id:pid}, (err,result) => 
     {
         if(!err)
         {
@@ -66,7 +66,7 @@ let editEmployeeProfile = (req,res) =>
     let newLastName = req.body.lastName.trim();
     let newPassword = req.body.password.trim();
 
-    employeeModel.updateOne(
+    employees.updateOne(
         {_id: new ObjectId(eid)},
         {
             $set:
@@ -85,7 +85,7 @@ let changeEmployeePassword = (req,res) =>
     let eid = req.params.eid;
     let newPassword = req.body.newPassword;
     console.log(eid, newPassword)
-    EmployeeModel.updateOne({_id: eid},{$set: {password: newPassword}}, (err, result) => 
+    employees.updateOne({_id: eid},{$set: {password: newPassword}}, (err, result) => 
     {
         if (!err) 
         {
@@ -160,7 +160,7 @@ let getaccounts = (req,res) => {
 let editpass = (req,res) => {
     let pass = req.params.pass;
     let id = req.params.id;
-    employeeModel.updateOne({_id:id},{$set: {password:pass}}, (err,result) =>{
+    employees.updateOne({_id:id},{$set: {password:pass}}, (err,result) =>{
         if (!err){
             if (result.nModified > 0){
                 res.send('Password updated.');
@@ -173,4 +173,4 @@ let editpass = (req,res) => {
 }
 
 
-module.exports = { employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeById, changeEmployeePassword };
+module.exports = { employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };
