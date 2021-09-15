@@ -22,6 +22,57 @@ export class UserService {
         },
         (error) => console.log(error)
       );
+  }
+
+  updatePassword(data: any): void {
+    this.http
+      .put('http://localhost:9090/api/updateUserPassword/', data, {
+        responseType: 'text',
+      })
+      .subscribe(
+        (result) => {
+          /*console.log(result)*/
+        },
+        (error) => console.log(error)
+      );
+  }
+  updateEmail(data: any): void {
+    this.http
+      .put('http://localhost:9090/api/updateUserEmail/', data, {
+        responseType: 'text',
+      })
+      .subscribe(
+        (result) => {
+          console.log(result)
+        },
+        (error) => console.log(error)
+      );
+  }
+  updateAddress(data: any): void {
+    this.http
+      .put('http://localhost:9090/api/updateUserAddress/', data, {
+        responseType: 'text',
+      })
+      .subscribe(
+        (result) => {
+          console.log(result)
+        },
+        (error) => console.log(error)
+      );
+  }
+  updatePhone(data: any): void {
+    this.http
+      .put('http://localhost:9090/api/updateUserPhone/', data, {
+        responseType: 'text',
+      })
+      .subscribe(
+        (result) => {
+          console.log(result)
+        },
+        (error) => console.log(error)
+      );
+  }
+
   savaCartItem(cItem:cartProduct){
     
   }

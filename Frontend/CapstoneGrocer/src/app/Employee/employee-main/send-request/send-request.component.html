@@ -1,1 +1,9 @@
-<p>send-request works!</p>
+<div id = "sendRequestForm">
+    <h2>Send Request</h2>
+    <form #requestRef = "ngForm" (ngSubmit) = "sendrequest(requestRef.value)">
+        <input type="text" name="senderName" placeholder="Name" ngModel>
+        <input type="text" name="request" placeholder="Request" ngModel>
+        <input type="submit" value="Send Request">
+    </form>
+    <a routerLink=".." class="nav-link">Back</a><br>
+</div>

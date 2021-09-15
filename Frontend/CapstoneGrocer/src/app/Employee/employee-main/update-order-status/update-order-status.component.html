@@ -1,1 +1,17 @@
-<p>update-order-status works!</p>
+<h1>Update Order</h1>
+<div>
+    <form #order = "ngForm" (ngSubmit) = "updateorder(order)">
+        <label>Enter Order Id</label>
+        <input type ="text" name="id">
+        <br>
+        <label>New Status</label>
+        <select name ="status">
+            <option value = "Shipped">Shipped</option>
+            <option value = "Out for delivery">Out for Delivery</option>
+            <option value = "Delivered">Delivered</option>
+            <option value = "Cancelled">Cancelled</option>
+        <input type = "submit" value = "Submit">
+        </select>
+    </form>
+</div>
+

@@ -1,11 +1,12 @@
-let employeeModel = require('../employee.model.js');
+let employeeModel = require('./employee.model.js');
 let objectId = require('mongodb').ObjectId;
 //add admin model
 
-let getEmployeeById = (req,res) =>
+let getEmployeeByEmail = (req,res) =>
 {
-    let pid = req.params.pid;
-    employeeModel.find({_id: new ObjectId(pid)}, (erre, result)=>
+    let email = req.params.email;
+    
+    employeeModel.find({email:email}, (err, result)=>
     {
         if(err){console.error(err)}
         else
@@ -25,7 +26,7 @@ let employeeUserDetails = (req,res) =>
             password: 'defaultpassword'
         });
 
-    empoloyee.save((err,result) =>
+    employeeModel.save((err,result) =>
     {
         if(err)
         {
@@ -85,7 +86,7 @@ let changeEmployeePassword = (req,res) =>
     let eid = req.params.eid;
     let newPassword = req.body.newPassword;
     console.log(eid, newPassword)
-    EmployeeModel.updateOne({_id: eid},{$set: {password: newPassword}}, (err, result) => 
+    employees.updateOne({_id: eid},{$set: {password: newPassword}}, (err, result) => 
     {
         if (!err) 
         {
@@ -126,6 +127,7 @@ let changestatus = (req,res) => {
             }
         }
     })
+}
 
 //unlocks a user account
 let unlockuser = (req,res) => {
@@ -172,4 +174,4 @@ let editpass = (req,res) => {
 }
 
 
-module.exports = { employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeById, changeEmployeePassword };
+module.exports = {editpass, getaccounts, unlockuser, changestatus, storerequest, employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };

@@ -2,18 +2,19 @@
 <div *ngIf = "!defaultPassword" id = "signInForm">
     <h2>Employee Sign In</h2>
     <form #employeeRef = "ngForm" (ngSubmit) = "loginEmployee(employeeRef.value)">
-        <input type="text" name="employeeId" placeholder="Employee Id" ngModel>
-        <input type="password" name="employeePassword" placeholder="Password" ngModel>
+        <input type="text" name="employeeEmail" placeholder="Employee Email" ngModel>
+        <input type="password" name="employeePassword" placeholder="Password" ngModel><br>
         <input type="submit" value="Sign In">
     </form>
+    {{foundemployee}}
     <a routerLink=".." class="nav-link">Back</a><br>
 </div>
 
 <div *ngIf = "defaultPassword" id = "changePasswordForm">
     <h2>First time password change</h2>
     <form #changePasswordRef = "ngForm" (ngSubmit) = "changeEmployeePassword(changePasswordRef.value)">
-        <input type="text" name="employeeId" placeholder="Employee Id" required ngModel>
-        <input type="password" name="employeePassword" placeholder="New Password" required ngModel>
+        <input type="text" name="employeeEmail" placeholder="Employee Email" required ngModel>
+        <input type="password" name="employeePassword" placeholder="New Password" required ngModel><br>
         <input type="submit" value="Change Password">
     </form>
 </div>
