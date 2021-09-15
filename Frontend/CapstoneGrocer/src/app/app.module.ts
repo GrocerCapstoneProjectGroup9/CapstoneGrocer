@@ -11,7 +11,10 @@ import { UpdateOrderStatusComponent } from './Employee/employee-main/update-orde
 import { UnlockUsersComponent } from './Employee/employee-main/unlock-users/unlock-users.component';
 import { EditProfileComponent } from './Employee/employee-main/edit-profile/edit-profile.component';
 import { LogoutComponent } from './Employee/employee-main/logout/logout.component';
-import { FromsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RaiseTicketComponent } from './User/raise-ticket/raise-ticket.component';
+import { UserMainComponent } from './User/user-main/user-main.component';
+import { CartComponent } from './User/user-main/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +26,16 @@ import { FromsModule, ReactiveFormsModule } from '@angular/forms';
     UpdateOrderStatusComponent,
     UnlockUsersComponent,
     EditProfileComponent,
-    LogoutComponent
+    LogoutComponent,
+    RaiseTicketComponent,
+    UserMainComponent,
+    CartComponent
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FromsModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
