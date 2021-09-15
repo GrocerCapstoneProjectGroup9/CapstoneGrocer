@@ -14,7 +14,7 @@ import { MainComponent } from './main/main.component';
 
 const routes: Routes = [  
   //main component paths
-  {path: '/', redirectTo:'main', component:MainComponent},
+  {path: '', component:MainComponent},
 
   //Admin component paths
 
