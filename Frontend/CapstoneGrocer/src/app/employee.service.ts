@@ -11,7 +11,7 @@ export class EmployeeService {
   constructor(public http:HttpClient) { }
 
   //get employee
-  getEmployee(email:any)
+  getEmployee(email:any):Observable<any>
   {
     return this.http.get("http://localhost:9090/api/employee/getEmployeeByEmail", email);
   }
