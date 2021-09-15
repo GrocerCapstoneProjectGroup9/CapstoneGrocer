@@ -1,6 +1,6 @@
 <div>
     <h2>Raise Ticket</h2>
-    <form [formGroup]="ticketRef" (ngSubmit)="">
+    <form [formGroup]="ticketRef" (ngSubmit)="sendTicket(ticketRef)">
         <label>User ID</label>
         <input type="text" formControlName="userid"/><br/>
         <label>Reason for raising ticket</label>

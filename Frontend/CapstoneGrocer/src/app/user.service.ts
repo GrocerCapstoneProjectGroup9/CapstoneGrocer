@@ -22,7 +22,10 @@ export class UserService {
         },
         (error) => console.log(error)
       );
-  savaCartItem(cItem:cartProduct){
-    
+  
+}
+
+  saveCartItem(cItem:cartProduct){
+      
   }
 }
