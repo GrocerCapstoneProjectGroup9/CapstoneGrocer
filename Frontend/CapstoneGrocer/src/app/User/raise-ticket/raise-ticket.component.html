@@ -1,1 +1,13 @@
-<p>raise-ticket works!</p>
+
+<div>
+    <h2>Raise Ticket Portal</h2>
+    <form [formGroup]="raiseTicketRef" (ngSubmit)="raiseTicket()">
+        <label>Email Id:</label>
+        <input type="text" formControlName="email"/><br/>
+        <label>Issue: </label><br>
+        <textarea formControlName="issue"></textarea><br/>
+        <input type="submit" value="submit" [disabled]="!raiseTicketRef.valid"/>
+        <input type="reset" value="reset"/>
+    </form>
+    {{msg}}
+</div>
