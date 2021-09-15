@@ -17,24 +17,24 @@ export class EmployeeService {
 
   //update status
   changestatus(status:any){
-    return this.http.post("http://localhost:9090/employee/changestatus",status,{responseType:'text'});
+    return this.http.put("http://localhost:9090/employee/changestatus",status,{responseType:'text'});
   }
 
   refunduser(orderid:any){
-    return this.http.post("http://localhost:9090/employee/refunduser",orderid,{responseType:'text'});
+    return this.http.put("http://localhost:9090/employee/refunduser",orderid,{responseType:'text'});
   }
 
   //unlock user
   unlockuser(user:any){
-    return this.http.post("http://localhost:9090/employee/unlockuser",user,{responseType:'text'});
+    return this.http.put("http://localhost:9090/employee/unlockuser",user,{responseType:'text'});
   }
 
   getaccounts(){
-    return this.http.post("http://localhost:9090/employee/getaccounts",'',{responseType:'text'});
+    return this.http.get("http://localhost:9090/employee/getaccounts",'',{responseType:'text'});
   }
 
   //edit profile
   editpass(pass:any){
-    return this.http.post("http://localhost:9090/employee/editpass",pass,{responseType:'text'});
+    return this.http.put("http://localhost:9090/employee/editpass",pass,{responseType:'text'});
   }
 }
