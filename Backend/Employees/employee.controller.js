@@ -144,18 +144,6 @@ let unlockuser = (req,res) => {
     })
 }
 
-//show all user accounts
-let getaccounts = (req,res) => {
-    let result = '';
-    usermodel.find({},(err,res) =>{
-        if(!err){
-            res.foreach(res =>{
-                result = ""
-            })
-            res.send(result);
-        }
-    })
-}
 
 //changes the employee password
 let editpass = (req,res) => {
@@ -174,4 +162,4 @@ let editpass = (req,res) => {
 }
 
 
-module.exports = {editpass, getaccounts, unlockuser, changestatus, storerequest, employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };
+module.exports = {editpass, unlockuser, changestatus, storerequest, employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };

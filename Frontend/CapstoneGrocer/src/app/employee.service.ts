@@ -31,8 +31,9 @@ export class EmployeeService {
     return this.http.put("http://localhost:9090/api/employee/unlockuser",user);
   }
 
-  getaccounts(){
-    return this.http.get("http://localhost:9090/api/employee/getaccounts");
+  //get user
+  gettickets():Observable<any>{
+    return this.http.get("http://localhost:9090/api/user/");
   }
 
   //edit profile
