@@ -18,14 +18,9 @@ export class UpdateOrderStatusComponent implements OnInit {
   }
 
   //change temp names
-  updateorder(tempform:NgForm){
-    let status = tempform.temp;
-    this.employee.changestatus(status);
-
-    if (status == "Cancelled"){
-      //obtain the user of the order and refund the amount and reason for cancellation
-      let orderid = tempform.id;
-      this.employee.refunduser(orderid);
-    }
+  updateorder(order:NgForm){
+    let status = order.value.status;
+    let id = order.value.id;
+    this.employee.changestatus(status,id);
   }
 }
