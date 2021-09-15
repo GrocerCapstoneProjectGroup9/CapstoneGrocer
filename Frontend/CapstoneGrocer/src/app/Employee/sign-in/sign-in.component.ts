@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import { employee } from 'src/app/employee.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -8,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class SignInComponent implements OnInit {
 
-  defaultpassword:boolean = false;
+  defaultPassword:boolean = false;
 
   constructor(public router:Router) { }
 
@@ -21,6 +22,11 @@ export class SignInComponent implements OnInit {
     let employeePassword = employeeRef.employeePassword;
 
 
+
+  }
+
+  changeEmployeePassword(data:any)
+  {
 
   }
 

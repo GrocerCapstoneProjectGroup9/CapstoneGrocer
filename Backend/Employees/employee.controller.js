@@ -126,6 +126,7 @@ let changestatus = (req,res) => {
             }
         }
     })
+}
 
 //unlocks a user account
 let unlockuser = (req,res) => {
