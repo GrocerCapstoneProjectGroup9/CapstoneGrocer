@@ -6,27 +6,28 @@ import { User } from './user.model'
 
 import { UserMainComponent } from './User/user-main/user-main.component';
 import { cartProduct } from './model.cart';
+import { Item } from './User/model.item';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
   constructor(public http:HttpClient) { }
+  addToCart(item:Item,email:any):Observable<any>{
+    return this.http.put('http://localhost:9090/api/user/addItemtoCart/'+email,item,
+    {responseType:'text'})
+  }
 
-  storeTicketData(data: any): void {
-    this.http
-      .post('http://localhost:9090/api/ticket/storeTicket', data, { responseType: 'text' })
-      .subscribe(
-        (result) => {
-          console.log(result)
-        },
-        (error) => console.log(error)
-      );
+
+  storeTicketData(data: any): Observable<any> {
+    return this.http
+      .post('http://localhost:9090/api/user/raiseTicket', data, { responseType: 'text' })
+
   }
 
   updatePassword(data: any): void {
     this.http
-      .put('http://localhost:9090/api/updateUserPassword/', data, {
+      .post('http://localhost:9090/api/user/updatePassword', data, {
         responseType: 'text',
       })
       .subscribe(
@@ -36,9 +37,9 @@ export class UserService {
         (error) => console.log(error)
       );
   }
-  updateEmail(data: any): void {
+  updateEmail(data: any,email:any): void {
     this.http
-      .put('http://localhost:9090/api/updateUserEmail/', data, {
+      .put('http://localhost:9090/api/user/updateUserEmail/'+email, data, {
         responseType: 'text',
       })
       .subscribe(
@@ -48,9 +49,9 @@ export class UserService {
         (error) => console.log(error)
       );
   }
-  updateAddress(data: any): void {
+  updateAddress(data: any,email:any): void {
     this.http
-      .put('http://localhost:9090/api/updateUserAddress/', data, {
+      .put('http://localhost:9090/api/user/updateAddress/'+email, data, {
         responseType: 'text',
       })
       .subscribe(
@@ -60,9 +61,9 @@ export class UserService {
         (error) => console.log(error)
       );
   }
-  updatePhone(data: any): void {
+  updatePhone(data: any,email:any): void {
     this.http
-      .put('http://localhost:9090/api/updateUserPhone/', data, {
+      .put('http://localhost:9090/api/user/updatePhone/'+email, data, {
         responseType: 'text',
       })
       .subscribe(

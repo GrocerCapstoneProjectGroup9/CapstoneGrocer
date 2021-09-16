@@ -15,6 +15,7 @@
             <img src="icon.jpg" width="50" height="50" alt=""> ShoppingCart.Com
         </a>
         <form class="form-inline my-2 my-lg-0">
+   
             <a class="nav-link active text-monospace font-weight-bold" href="#">Sign in </a>
             <a class="nav-link active text-monospace font-weight-bold" href="#">Account </a>
             <a class="nav-link active text-monospace font-weight-bold" href="#">Orders </a>
@@ -65,7 +66,7 @@
    
           
     </div> 
-    <form [formGroup]="checkoutRef" (ngSubmit)="doCheckout()">
+    <form [formGroup]="checkoutRef" (ngSubmit)="addtoCart()">
         <label>Product Id::</label>
         <input type="text" formControlName="pid"/><br/>
         <label>Price: </label><br>
