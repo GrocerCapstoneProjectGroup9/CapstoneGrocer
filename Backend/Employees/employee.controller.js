@@ -24,10 +24,12 @@ let getEmployeeByEmail = (req,res) =>
 //needs change based on request model
 let storerequest = (req,res) => {
     let message = req.body.message;
+    let email = req.body.email;
     let request = new requestmodel({
+        email:email,
         message:message
     });
-    requestModel.insertMany([request],(err,res)=>{
+    requestModel.insertMany([request],(err,result)=>{
         if (!err){
             res.send("Request added");
         }
@@ -39,7 +41,7 @@ let storerequest = (req,res) => {
 let changestatus = (req,res) => {
     let status = req.body.status;
     let orderid = req.body.orderid;
-    orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
+    orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,result) => {
         if(!err){
             if (result.modifiedCount > 0){
                 res.send('Status updated.');
