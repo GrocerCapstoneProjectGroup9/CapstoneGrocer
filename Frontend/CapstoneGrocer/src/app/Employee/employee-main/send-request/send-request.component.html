@@ -1,8 +1,10 @@
 <div class="wrapper" id = "sendreqform">
     <h2>Send Request</h2>
     <form #requestRef = "ngForm" (ngSubmit) = "sendrequest(requestRef)">
-        <input type="text" name="senderName" placeholder="Name" ngModel><br>
-        <input type="text" name="request" placeholder="Request" ngModel><br>
+        <input type="text" name="id" placeholder="Product Id" ngModel><br>
+        <input type="text" name="amount" placeholder="Amount" ngModel><br>
+        <input type="text" name="message" placeholder="Message" ngModel><br>
         <input type="submit" value="Send Request">
     </form>
+    {{result}}
 </div>
