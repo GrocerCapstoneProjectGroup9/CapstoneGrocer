@@ -17,8 +17,8 @@ export class EmployeeService {
   }
 
   //send request
-  storerequest(message:any){
-    return this.http.post("http://localhost:9090/api/employee/storerequest",{message:message});
+  storerequest(message:any,email:any){
+    return this.http.post("http://localhost:9090/api/employee/storerequest",{message:message,email:email});
   }
 
   //update status

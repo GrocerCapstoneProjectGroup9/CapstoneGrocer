@@ -279,6 +279,17 @@ let addFunds=(req,res)=>
         }
     });
 }
+let getUser=(request,response)=>{
+    let email=request.params.email;
+    UserModel.findOne({email:email},(err,result)=>{
+        if(!err){
+        response.json(result);
+        }else{
+            response.send(err);
+        }
+    })
+    
+}
 
 
 module.exports={signIn,
@@ -298,5 +309,6 @@ module.exports={signIn,
     RaiseTicket,
     getAllTickets,
     lockUser,
-    addFunds
+    addFunds,
+    getUser
 };
