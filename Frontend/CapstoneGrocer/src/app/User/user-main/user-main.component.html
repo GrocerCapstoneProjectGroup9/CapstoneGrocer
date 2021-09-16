@@ -37,7 +37,7 @@
             </li>
         </ul>
         <div class="active text-monospace font-weight-bold form-inline" >
-            <a class="nav-link text-monospace text-primary " href="/cart">Checkout</a> 
+            <a class="nav-link text-monospace text-primary"  routerLink="/cart">Checkout</a> 
             <a class="nav-link text-monospace text-primary " href="checkout.html">Cart 
             <img src="cart.png" width="30" height="30"  alt="" > :</a>
             <div id="cart_number" class="text-light btn btn-primary">{{cartcont}}</div>
@@ -71,6 +71,8 @@
         <input type="text" formControlName="pid"/><br/>
         <label>Price: </label><br>
         <input type="text" formControlName="price"/><br/>
+        <label>quantity : </label><br>
+        <input type="text" formControlName="quantity"/><br/>
         <input type="submit" value="Add to Cart">
         <input type="reset" value="reset"/>
     </form>   

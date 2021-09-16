@@ -258,6 +258,7 @@ let lockUser=(request,response)=>{
     })
 }
 
+
 let addFunds=(res,req)=>
 {
     let money = req.body.money;
@@ -276,6 +277,7 @@ let addFunds=(res,req)=>
         }
     });
 }
+
 
 module.exports={signIn,
     signUp,
