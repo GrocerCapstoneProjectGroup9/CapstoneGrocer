@@ -33,7 +33,8 @@ export class UpdateOrderStatusComponent implements OnInit {
   updateorder(order:NgForm){
     let status = order.value.status;
     let id = order.value.id;
+    console.log(status,id)
     this.employee.changestatus(status,id);
-    window.location.reload();
+    //window.location.reload();
   }
 }

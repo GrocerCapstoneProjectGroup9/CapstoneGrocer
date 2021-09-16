@@ -21,16 +21,16 @@ let getEmployeeByEmail = (req,res) =>
 
 
 //Store request to admin
-//needs change based on request model
 let storerequest = (req,res) => {
     let message = req.body.message;
     let email = req.body.email;
-    let request = new requestmodel({
-        email:email,
-        message:message
-    });
-    requestModel.insertMany([request],(err,result)=>{
+    let id = req.body.id;
+    let amount = req.body.amount;
+    let request = new requestModel({empID:email,productID:id,productName:amount,reqMsg:message});
+    console.log(request)
+    requestModel.insertMany(request,(err,result)=>{
         if (!err){
+            console.log(result)
             res.send("Request added");
         }
     });
