@@ -73,9 +73,6 @@ export class UserService {
   lockUser(login:Login):Observable<any> {
     console.log(login)
     console.log("I am here")
-   return this.http
-      .put('http://localhost:9090/api/user/lockUser/',login, {
-        responseType: 'text',
-      })
+    return this.http.put('http://localhost:9090/api/user/lockUser', login, { responseType: 'text' })
   }
 }

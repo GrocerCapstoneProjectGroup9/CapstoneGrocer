@@ -7,7 +7,7 @@ const { request, response } = require("express");
 
 let signIn = async (request,response)=> {
     let user = request.body;    // receive the data from post method
-    let userInfo = await UserModel.findOne({email:user.email,password:user.password});
+    let userInfo = await UserModel.findOne({email:user.email,password:user.password,locked:false});
     if(userInfo!=null){
         response.send("Success");      
     }else {
@@ -249,7 +249,7 @@ let getAllTickets=(request,response)=>{
 }
 let lockUser=(request,response)=>{
  
-    let email=request.params.email;
+    let email=request.body.email;
     console.log(email)
     UserModel.findOneAndUpdate({email:email},{$set:{locked:true}},(err,result)=>{
         if(!err){
