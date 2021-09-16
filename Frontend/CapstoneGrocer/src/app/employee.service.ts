@@ -32,7 +32,15 @@ export class EmployeeService {
 
   //update status
   changestatus(status:any, orderid:any){
-    return this.http.put("http://localhost:9090/api/employee/changestatus",{status:status,orderid:orderid});
+    return this.http.put("http://localhost:9090/api/employee/changestatus",{status:status,orderid:orderid},{
+      responseType: 'text',
+    })
+    .subscribe(
+      (result) => {
+        console.log(result)
+      },
+      (error) => console.log(error)
+    );
   }
 
   //unlock user

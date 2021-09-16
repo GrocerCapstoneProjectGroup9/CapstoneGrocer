@@ -23,6 +23,7 @@ export class UpdateOrderStatusComponent implements OnInit {
   //display tickets
   display(){
     this.employee.getorders().subscribe(result => {
+      console.log(result)
       for(let i of result){
         this.result.push(i);
       }

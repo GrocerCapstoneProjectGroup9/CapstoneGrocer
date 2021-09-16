@@ -35,12 +35,13 @@ let storerequest = (req,res) => {
 };
 
 //Changes the status of an order
-//needs change based on sale model
 let changestatus = (req,res) => {
     let status = req.body.status;
     let orderid = req.body.orderid;
+    console.log("flag")
     orderModel.updateOne({_id:orderid},{$set:{orderStatus:status}},(err,result) => {
         if(!err){
+            console.log(result)
             if (result.modifiedCount > 0){
                 res.send('Status updated.');
             }
@@ -52,9 +53,11 @@ let changestatus = (req,res) => {
     if (status == "Cancelled"){
         orderModel.find({_id:orderid},(err,res)=>{
             if(!err){
+                console.log(res)
                 let refund = res.total;
                 userModel.find({_id:res.userId},(error,result)=>{
                     if(!error){
+                        console.log(result)
                         refund = refund + res.funds;
                         userModel.updateOne({_id:res.userId},{$set:{funds:refund}})
                     }
