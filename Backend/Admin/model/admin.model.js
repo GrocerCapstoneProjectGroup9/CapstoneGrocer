@@ -1,11 +1,12 @@
-let mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+let mongoose = require("mongoose");
 
-let AdminSchema = mongoose.Schema({
-    username:String,
-    password:String
-})
+mongoose.pluralize(null);
 
-let AdminModel = mongoose.model("admin",AdminSchema,"Admin")
+let adminSchema = mongoose.Schema({
+    userName: { type: String, unique: true, required: true },
+    password: { type: String, required: true }
+});
 
-module.exports = AdminModel;
+let adminModel = mongoose.model("Admin", adminSchema);
+
+module.exports = adminModel;

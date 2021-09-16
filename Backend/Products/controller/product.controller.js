@@ -1,67 +1,87 @@
-let ProductModel = require('../model/product.model.js');
+//load the model file ie user-defined module
+let productModel = require("../model/product.model");
 
-//view  retrieve all product details
-let getProductDetails = (req,res)=>{
-    ProductModel.find({},(err,result)=>{
-        if(!err){
-            res.json(result);
-        }
-    })
-}
-//select
-let getProductById = (req,res)=>{
-    let pid = req.params.pid;       //passing the id through path param
-    ProductModel.find({_id:pid},(err,result)=>{
-        if(!err){
-            res.json(result);
-        }
-    })
-}
-//add
-let storeProdectDetails = (req,res)=>{
-    let product = new ProductModel({
-        name:req.body.name,
-        price:req.body.price,
-        quantity:req.body.quantity
+//add products
+let addProductInfo = (request,response)=> {
+    let product = new productModel({
+        name:request.body.name,
+        quantity:request.body.quantity,
+        price:request.body.price
     });
-    console.log(product)
+    console.log(product);
+
     product.save((err,result)=>{
         if(!err){
-            res.send("Records stored successfully")
-        } else {
-            res.send("Record didn't store...")
+            response.send("Product added successfully");
+        }else{
+            response.send(err);
         }
     })
+
 }
-//delete
-let deleteProdectById = (req,res)=>{
-    let pid = req.params.pid;       //passing the id through path param
-    ProductModel.deleteOne({_id:pid},(err,result)=>{
+
+//deleting products by id
+let deleteProductInfo = (request,response)=> {
+    let pid = request.params.pid;
+    productModel.deleteOne({_id:pid},(err,result)=> {
         if(!err){
-            if(result.deletedCount>0){
-                res.send("Record deleted successfully")
+            if(result.deleteCount>0){
+                response.send("Product deleted successfully");
             }else {
-                res.send("No such Product")
+            response.send(err);
             }
-        } 
-    })
-}
-
-let updateProdectDetails = (req,res)=>{
-    let pid = req.body.pid;       //passing the id through path param
-    let upPrice = req.body.price;
-    let newQuant = req.body.quantity;
-    ProductModel.updateMany({_id:pid},{$set:{quantity:newQuant,price:upPrice,}},(err,result)=>{
-        if(!err){
-            if(result.nModified>0){
-                res.send("Record updated successfully")
-            } else {
-                res.send("No such Product")
-            }
-        } else {
-            res.send("Error generated "+err)
         }
     })
 }
 
-module.exports={getProductDetails, getProductById,storeProdectDetails,deleteProdectById,updateProdectDetails}
+//getting all the products 
+let getAll = async (req, res, next) => {
+
+	const query = proModel.find({});
+
+	query.exec()
+		.then(doc => res.status(200).json(doc))
+		.catch(next)
+
+};
+
+
+
+//update product by id
+let updateProductDetails = (request,response)=> {
+    let pid = request.body.pid;
+    let priceChange = request.body.priceChange;
+    let changeQuantity = request.body.changeQuantity;
+    productModel.updateMany({_id:pid},{$set:{quantity:changeQuantity,price:priceChange}},(err,result)=>{
+        if(!err){
+            response.send("Product updated successfully");
+        }else{
+            response.send("Product couldn't find");
+        }
+    })
+}
+
+//selecting product by id
+let selectProductById = (request,response)=>{
+    let pid = request.params.pid;
+    productModel.find({_id:pid},(err,result)=>{
+        if(!err){
+            response.send(result);
+        }else{
+            response.send(err);
+        }
+    })
+}
+
+//retrieving all product details
+let getProductDetails = (request,response)=>{
+    productModel.find({},(err,result)=>{
+        if(!err){
+            response.send(result);
+        }else{
+            response.send(err);
+        }
+    })
+}
+
+module.exports = {addProductInfo,deleteProductInfo,getAll,updateProductDetails,selectProductById,getProductDetails}
