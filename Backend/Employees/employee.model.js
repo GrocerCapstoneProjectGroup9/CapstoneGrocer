@@ -9,6 +9,6 @@ let EmployeeSchema = mongoose.Schema(
         password:String
     });
 
-    let employeeModel = mongoose.model("employee",EmployeeSchema,"Employee");
+    let employeeModel = mongoose.model("employee",EmployeeSchema);
 
     module.exports = employeeModel;

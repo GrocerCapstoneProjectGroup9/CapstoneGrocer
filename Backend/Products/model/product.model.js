@@ -12,8 +12,8 @@ let productSchema = mongoose.Schema({
     price:Number
 });
 
+
 //using schema creating model
 let productModel = mongoose.model("Product",productSchema);
-
 //export here and import in another file using require
 module.exports = productModel;

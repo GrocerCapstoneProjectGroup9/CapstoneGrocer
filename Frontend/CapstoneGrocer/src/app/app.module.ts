@@ -11,10 +11,20 @@ import { UpdateOrderStatusComponent } from './Employee/employee-main/update-orde
 import { UnlockUsersComponent } from './Employee/employee-main/unlock-users/unlock-users.component';
 import { EditProfileComponent } from './Employee/employee-main/edit-profile/edit-profile.component';
 import { LogoutComponent } from './Employee/employee-main/logout/logout.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { RaiseTicketComponent } from './User/raise-ticket/raise-ticket.component';
+import { SignUpComponent } from './User/sign-up/sign-up.component';
 import { UserMainComponent } from './User/user-main/user-main.component';
+import { FundsComponent } from './User/user-main/funds/funds.component';
+import { OrderStatusComponent } from './User/user-main/order-status/order-status.component';
+import { RaiseTicketComponent } from './User/raise-ticket/raise-ticket.component';
+import { ShopComponent } from './User/user-main/shop/shop.component';
 import { CartComponent } from './User/user-main/cart/cart.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { EditProfileComponent as UserEditProfileComponent} from './User/user-main/edit-profile/edit-profile.component';
+import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
+import { AdminSignInComponent } from './Admin/admin-sign-in/admin-sign-in.component';
+import { AdminMainComponent } from './Admin/admin-main/admin-main.component';
+import { EditEmployeeComponent } from './Admin/admin-main/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -27,14 +37,23 @@ import { CartComponent } from './User/user-main/cart/cart.component';
     UnlockUsersComponent,
     EditProfileComponent,
     LogoutComponent,
-    RaiseTicketComponent,
+    SignUpComponent,
     UserMainComponent,
-    CartComponent
-  
+    FundsComponent,
+    OrderStatusComponent,
+    RaiseTicketComponent,
+    ShopComponent,
+    CartComponent,
+    UserEditProfileComponent,
+    UserSignInComponent,
+    AdminSignInComponent,
+    AdminMainComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule
   ],

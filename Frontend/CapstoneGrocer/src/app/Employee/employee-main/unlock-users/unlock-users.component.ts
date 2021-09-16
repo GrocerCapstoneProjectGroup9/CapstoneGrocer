@@ -1,31 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmployeeService } from 'src/app/employee.service';
+import { Ticket } from 'src/app/model.ticket';
 
 @Component({
   selector: 'app-unlock-users',
-  template: '<div>{{result}}<div>'
+  templateUrl: './unlock-users.component.html',
+  styleUrls: ['./unlock-users.component.css']
 })
 export class UnlockUsersComponent implements OnInit {
 
-  result = "";
+  result:Ticket[]=[];
 
   constructor(
     public employee:EmployeeService,
   ) { }
 
   ngOnInit(): void {
+    this.display();
   }
 
-  //display locked accounts
+  //display tickets
   display(){
-    this.result=this.employee.getaccounts();
-    
+    this.employee.gettickets().subscribe(result => {
+      for(let i of result){
+        this.result.push(i);
+      }
+    }) 
   }
 
   //unlock accounts
-  unlock(tempform:NgForm){
-    let id = tempform.temp;
-    this.employee.unlockuser(id);
+  unlock(unlockForm:NgForm){
+    let email = unlockForm.value.email;
+    this.employee.unlockuser(email);
+    window.location.reload();
   }
 }

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -7,9 +13,114 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditProfileComponent implements OnInit {
 
-  constructor() { }
+  editPasswordRef = new FormGroup({
+    password:new FormControl("",[Validators.required]),
+    email:new FormControl("",[Validators.required])
+  });
+  editAddressRef = new FormGroup({
+    address:new FormControl("",[Validators.required])
+  });
+  editEmailRef = new FormGroup({
+    email:new FormControl("",[Validators.required])
+  });
+  editPhoneRef = new FormGroup({
+    phone:new FormControl("",[Validators.required])
+  });
+
+  constructor(public userProfile: UserService,public router:Router) { }
+  passMsg?:string
+  addrMsg?:string
+  emailMsg?:string
+  phoneMsg?:string
+  editPasswordFalg:boolean=false;
+  editAddressFlag:boolean=false;
+  editEmailFalg:boolean=false;
+  editPhoneFlag:boolean=false;
 
   ngOnInit(): void {
+  }
+
+  updatePassword(newPass: any): void{
+    console.log(newPass)
+    this.userProfile.updatePassword(newPass);
+    this.passMsg = 'Password updated'
+    this.editPasswordRef.reset()
+  }
+
+  updateAddress(newAddress: any): void{
+    this.userProfile.updateAddress(newAddress,sessionStorage.getItem('curUserId'));
+    this.addrMsg = 'Address updated'
+    this.editAddressRef.reset()
+  }
+
+  updateEmail(newEmail: any): void{
+    this.userProfile.updateEmail(newEmail,sessionStorage.getItem('curUserId'))    .subscribe(
+      (result) => {
+        if(result=="emailUpdated"){
+          this.emailMsg = 'Email updated'
+        }
+        else{
+          this.emailMsg='Email not Updated'
+        }
+      },
+      (error) => console.log(error)
+    );;
+    sessionStorage.setItem('curUserId', newEmail.email);
+   
+    this.editEmailRef.reset()
+  }
+
+  updatePhone(newPhone: any): void{
+    this.userProfile.updatePhone(newPhone,sessionStorage.getItem('curUserId'));
+    this.phoneMsg = 'Phone updated'
+    this.editPhoneRef.reset();
+  }
+  enableEE(){
+    this.editAddressFlag=false
+    this.editEmailFalg=true
+    this.editPasswordFalg=false
+    this.editPhoneFlag=false
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  enableEP(){
+    this.editAddressFlag=false
+    this.editEmailFalg=false
+    this.editPasswordFalg=true
+    this.editPhoneFlag=false
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  enableEA(){
+    this.editAddressFlag=true
+    this.editEmailFalg=false
+    this.editPasswordFalg=false
+    this.editPhoneFlag=false
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  enableEPhone(){
+    this.editAddressFlag=false
+    this.editEmailFalg=false
+    this.editPasswordFalg=false
+    this.editPhoneFlag=true
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  gotoHome(){
+    this.router.navigate(["user-main",sessionStorage.getItem('curUserId')]);
   }
 
 }

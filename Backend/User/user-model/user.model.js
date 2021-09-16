@@ -5,8 +5,8 @@ let UserSchema = mongoose.Schema({
     fname:String,
     lname:String,
     email:{type:String},
-    pass:{type:String},
-    phone:Number,
+    password:{type:String},
+    phone:String,
     address:String,
     funds:Number,
     locked:Boolean

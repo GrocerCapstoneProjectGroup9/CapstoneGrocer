@@ -1,11 +1,15 @@
-let employeeModel = require('../employee.model.js');
+let employeeModel = require('./employee.model');
 let objectId = require('mongodb').ObjectId;
-//add admin model
+let ticketModel = require('../User/user-model/ticket.model')
+let userModel = require('../User/user-model/user.model')
+let requestModel = require('../Requests/model/requests.model')
+let orderModel = require('../User/user-model/sales.model')
 
-let getEmployeeById = (req,res) =>
+let getEmployeeByEmail = (req,res) =>
 {
-    let pid = req.params.pid;
-    employeeModel.find({_id: new ObjectId(pid)}, (erre, result)=>
+    let email = req.params.email;
+    
+    employeeModel.find({email:email}, (err, result)=>
     {
         if(err){console.error(err)}
         else
@@ -15,124 +19,74 @@ let getEmployeeById = (req,res) =>
     });
 };
 
-let employeeUserDetails = (req,res) =>
-{
-    let employee = new employeeModel(
-        {
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            email:req.body.email,
-            password: 'defaultpassword'
-        });
 
-    empoloyee.save((err,result) =>
-    {
-        if(err)
-        {
-            res.send("Record save unsuccessful.");
-        }
-        else
-        {
-            res.send("Record saved successfully.");
-        }
-    })
-}
-
-let deleteEmployeeById = (req,res) =>
-{
-    let pid = req.params.pid;
-
-    employeeModel.deleteOne({_id:pid}, (err,result) => 
-    {
-        if(!err)
-        {
-            if(result.deletedCount > 0)
-            {
-                res.send('Employee deleted successfully.');
-            }
-            else
-            {
-                res.send('Employee with Id ' + pid + ' does not exist.')
-            }
-        }
-    })
-}
-
-let editEmployeeProfile = (req,res) =>
-{
-    let eid = req.body.eid;
-    let newEmail = req.body.email.trim();
-    let newFirstName = req.body.firstName.trim();
-    let newLastName = req.body.lastName.trim();
-    let newPassword = req.body.password.trim();
-
-    employeeModel.updateOne(
-        {_id: new ObjectId(eid)},
-        {
-            $set:
-            {
-                firstName:newFirstName,
-                lastName:newLastName,
-                email:newEmail,
-                password:newPassword
-            }
-        }
-    ).then((obj) => {console.log(obj);});
-}
-
-let changeEmployeePassword = (req,res) => 
-{
-    let eid = req.params.eid;
-    let newPassword = req.body.newPassword;
-    console.log(eid, newPassword)
-    EmployeeModel.updateOne({_id: eid},{$set: {password: newPassword}}, (err, result) => 
-    {
-        if (!err) 
-        {
-        if (result.nModified > 0) 
-        {
-            res.send('Employee password updated successfully.');
-        } 
-        else
-        {
-            res.send('Employee with Id ' + eid + ' does not exist.');
-        }
-        }
-    });
-}
-
+//Store request to admin
+//needs change based on request model
 let storerequest = (req,res) => {
     let message = req.body.message;
+    let email = req.body.email;
     let request = new requestmodel({
+        email:email,
         message:message
     });
-    messagemodel.insertMany([request],(err,res)=>{
+    requestModel.insertMany([request],(err,result)=>{
         if (!err){
             res.send("Request added");
         }
-    })
-}
+    });
+};
 
+//Changes the status of an order
+//needs change based on sale model
 let changestatus = (req,res) => {
-    let status = req.params.status;
-    let orderid = req.params.orderid;
-    ordermodel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
+    let status = req.body.status;
+    let orderid = req.body.orderid;
+    orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,result) => {
         if(!err){
-            if (result.nModified > 0){
+            if (result.modifiedCount > 0){
                 res.send('Status updated.');
             }
             else{
                 res.send('Order not found');
             }
         }
-    })
+    });
+    if (status == "Cancelled"){
+        orderModel.find({_id:orderid},(err,res)=>{
+            if(!err){
+                let refund = res.total;
+                userModel.find({_id:res.userId},(error,result)=>{
+                    if(!error){
+                        refund = refund + result.funds;
+                        userModel.updateOne({_id:res.userId},{$set:{funds:refund}},(error1,temp)=>{
+                            if(!error1){
+                                if (result.modifiedCount > 0){
+                                    res.send('Refund given.');
+                                }
+                                else{
+                                    res.send('Account not found');
+                                }
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    };
+};
 
 //unlocks a user account
+//might need to search for email
 let unlockuser = (req,res) => {
-    let id = req.body.user;
-    usermodel.updateOne({_id:id},{$set:{lock:false}},(err,res) => {
+    let email = req.body.email;
+    userModel.updateOne({email:email},{$set:{locked:false}},(err,result) => {
         if(!err){
-            if (result.nModified > 0){
+            if (result.modifiedCount > 0){
+                ticketModel.deleteOne({email:email},(err,result) => {
+                    if(!err){
+                        console.log(result);
+                    }
+                });
                 res.send('User unlocked.');
             }
             else{
@@ -140,28 +94,17 @@ let unlockuser = (req,res) => {
             }
         }
     })
-}
+};
 
-//show all user accounts
-let getaccounts = (req,res) => {
-    let result = '';
-    usermodel.find({},(err,res) =>{
-        if(!err){
-            res.foreach(res =>{
-                result = ""
-            })
-            res.send(result);
-        }
-    })
-}
 
 //changes the employee password
 let editpass = (req,res) => {
-    let pass = req.params.pass;
-    let id = req.params.id;
-    employeeModel.updateOne({_id:id},{$set: {password:pass}}, (err,result) =>{
+    let pass = req.body.pass;
+    let email = req.body.email;
+
+    employeeModel.updateOne({email:email},{$set:{password:pass}}, (err,result) =>{
         if (!err){
-            if (result.nModified > 0){
+            if (result.modifiedCount > 0){
                 res.send('Password updated.');
             }
             else{
@@ -169,7 +112,29 @@ let editpass = (req,res) => {
             }
         }
     })
+};
+
+//obtain tickets
+let gettickets = (req,res) =>{
+    ticketModel.find({},(err,result)=>{
+        if (!err){
+            res.send(result);
+        }
+    })
+};
+
+let insertEmployee = async (request,response)=> {
+    let empl = request.body;    // receive the data from post method
+    let emplInfo = await employeeModel.findOne({email:empl.email});
+    if(emplInfo==null){
+        empl.password="welcome123"
+        let result = await employeeModel.insertMany(empl);
+        
+        response.send("Employee created successfully");
+    }else {
+        response.send("Email Id must be unique");
+    }    
 }
 
 
-module.exports = { employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeById, changeEmployeePassword };
+module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail, insertEmployee};

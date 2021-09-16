@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-raise-ticket',
@@ -10,20 +12,30 @@ import { Validators } from '@angular/forms';
   styleUrls: ['./raise-ticket.component.css']
 })
 export class RaiseTicketComponent implements OnInit {
-  raiseTicketRef = new FormGroup({
+
+  ticketRef = new FormGroup({
     email:new FormControl("",[Validators.required]),
     issue:new FormControl("",[Validators.required])
-  })
-  msg:string=""
-  count:number=0;
-  constructor() { }
+  });
 
+  // inside constructor goes something like: public ticketService: UsersService
+  constructor(public userSer: UserService,router:Router) { }
+  msg?:string
+  formflag:boolean=false;
   ngOnInit(): void {
   }
-  raiseTicket() {
-    let rtvalues = this.raiseTicketRef.value
-    console.log(rtvalues.email);
-    console.log(rtvalues.issue)
-    this.raiseTicketRef.reset();
+
+  raiseTicket(){
+    this.userSer.storeTicketData(this.ticketRef.value).subscribe(result=>{
+      console.log(result);
+      if(result=="TickedAdded"){
+        this.formflag=true;
+        this.msg="Your Ticket Has been Submited Please Try After ticket resolved"
+      }
+      else{
+        this.msg="Your Ticket Not Been Submitted"
+      }
+    })
   }
+
 }

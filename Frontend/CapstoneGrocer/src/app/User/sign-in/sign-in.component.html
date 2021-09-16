@@ -1,1 +1,15 @@
-<p>sign-in works!</p>
+<div>
+    <h2>Login Page</h2>
+    <form [formGroup]="loginRef" (ngSubmit)="checkUser()">
+        <label>Email</label>
+        <input type="text" formControlName="email"/><br/>
+        <label>Password</label>
+        <input type="password" formControlName="password"/><br/>
+        <input type="submit" value="Sign In"/>
+    </form>
+    <br/>
+    <a routerLink="/user-sign-up">Sign Up</a>
+    <br/>
+    {{msg}}
+    
+</div>

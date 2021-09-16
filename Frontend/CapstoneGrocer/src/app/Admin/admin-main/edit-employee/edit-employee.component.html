@@ -1,0 +1,26 @@
+<div>
+    <h2>Edit Profile</h2>
+    <input type="button" value="Add Employee" (click)=enableAE()>
+    <input type="button" value="Delete Employee" (click)=enableDE()>
+    <br/>
+    <form [formGroup]="addEmployeeRef" (ngSubmit)="addEmployee()" *ngIf="addEmployeeFlag">
+        <label>First Name</label>
+        <input type="text" formControlName="firstName"/><br/>
+        <label>Last Name</label>
+        <input type="text" formControlName="lastName"/><br/>
+        <label>Email</label>
+        <input type="text" formControlName="email"/><br/>
+        <input type="submit" value="Add Employee" [disabled]="!addEmployeeRef.valid"/>
+    </form>
+    <br/>
+    {{addMsg}}
+    <br/>
+    <form [formGroup]="deleteEmployeeRef" *ngIf="deleteEmployeeFlag">
+        <label>Email</label>
+        <input type="text" formControlName="email"/><br/>
+        <input type="submit" value="Delete Employee" [disabled]="!deleteEmployeeRef.valid"/>
+    </form>
+    <br/>
+    {{delMsg}}
+    
+</div>

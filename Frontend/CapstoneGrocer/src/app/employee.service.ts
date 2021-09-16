@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { employee } from './employee.model'
+import { Login } from './User/login';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,15 @@ export class EmployeeService {
 
   constructor(public http:HttpClient) { }
 
+  //get employee
+  getEmployee(email:any):Observable<any>
+  {
+    return this.http.get("http://localhost:9090/api/employee/getEmployeeByEmail/"+email);
+  }
+
   //send request
-  storerequest(message:any){
-    return this.http.post("http://localhost:9090/api/employee/storerequest",message);
+  storerequest(message:any,email:any){
+    return this.http.post("http://localhost:9090/api/employee/storerequest",{message:message,email:email});
   }
 
   //update status
@@ -21,16 +28,42 @@ export class EmployeeService {
   }
 
   //unlock user
-  unlockuser(user:any){
-    return this.http.put("http://localhost:9090/api/employee/unlockuser",user);
+  unlockuser(email:any){
+    return this.http.put("http://localhost:9090/api/employee/unlockuser",{email:email},{
+      responseType: 'text',
+    })
+    .subscribe(
+      (result) => {
+        console.log(result)
+      },
+      (error) => console.log(error)
+    );
   }
 
-  getaccounts(){
-    return this.http.get("http://localhost:9090/api/employee/getaccounts");
+  //get tickets
+  gettickets():Observable<any>{
+    return this.http.get("http://localhost:9090/api/user/getAllTickets");
+  }
+
+  //get orders
+  getorders():Observable<any>{
+    return this.http.get("http://localhost:9090/api/user/getAllOrders");
   }
 
   //edit profile
-  editpass(pass:any, id:any){
-    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, id:id});
+  editpass(pass:any, email:any){
+    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, email:email},{
+      responseType: 'text',
+    })
+
+    
+  }
+
+  storeEmployee(login:Login):Observable<any>{
+      return this.http.post("http://localhost:9090/api/employee/addEmployee",login,
+      {responseType:'text'});
+    
+
+
   }
 }

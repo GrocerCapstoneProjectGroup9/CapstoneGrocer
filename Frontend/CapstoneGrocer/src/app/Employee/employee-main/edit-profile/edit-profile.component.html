@@ -1,1 +1,9 @@
-<p>edit-profile works!</p>
+<h1 style="text-align: center;">Edit Profile</h1>
+<div class="wrapper" id="editprofilediv">
+    <form #editprofile = "ngForm" (ngSubmit) = "changepass(editprofile)">
+        <label>New Password</label>
+        <input type ="text" name="pass" ngModel><br>
+        <input type = "submit" value = "Submit">
+    </form>
+    {{result}}
+</div>

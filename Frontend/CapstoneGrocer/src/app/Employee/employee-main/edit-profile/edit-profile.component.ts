@@ -3,11 +3,13 @@ import { NgForm } from '@angular/forms';
 import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
-  selector: 'app-edit-profile',
+  selector: 'app-employee-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
+
+  result:any;
 
   //initialize services
   constructor(
@@ -18,8 +20,14 @@ export class EditProfileComponent implements OnInit {
   }
 
   //change temp variables
-  changepass(tempform:NgForm){
-    let pass = tempform.temp;
-    this.employee.editpass(pass);
+  changepass(editpass:NgForm){
+    let pass = editpass.value.pass;
+    let emp = sessionStorage.getItem("activeUser");
+    if (emp!=null){
+      let empjson = JSON.parse(emp);
+      let email = empjson.email;
+      this.employee.editpass(pass,email);
+      this.result = "Password Changed to "+pass;
+    }
   }
 }

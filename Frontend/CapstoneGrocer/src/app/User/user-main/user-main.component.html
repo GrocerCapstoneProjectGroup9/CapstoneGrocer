@@ -4,28 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ShoppingCart.Com</title>
-    <script src="cart_managment.js"></script>
-    <link rel="icon" href="icon.jpg" type="image/gif" sizes="16x16">
+    <title>Grocery.Com</title>
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/135/135532.png" type="image/gif" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">    
 </head>
 <body onload="getItemCount()" style="background-color: lightgray;">
     <nav class="navbar navbar-light bg-light ">
         <a class="navbar-brand font-weight-bold text-success" href="#">
-            <img src="icon.jpg" width="50" height="50" alt=""> ShoppingCart.Com
+            <img src="https://cdn-icons-png.flaticon.com/512/135/135532.png" width="50" height="50" alt=""> Grocery.Com
         </a>
         <form class="form-inline my-2 my-lg-0">
-            <a class="nav-link active text-monospace font-weight-bold" href="#">Sign in </a>
-            <a class="nav-link active text-monospace font-weight-bold" href="#">Account </a>
-            <a class="nav-link active text-monospace font-weight-bold" href="#">Orders </a>
-            <a class="nav-link active text-monospace font-weight-bold" href="#">Returns</a>
-            <input class="form-control mr-sm-2" type="text" placeholder="Search Products" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+   
+            <a class="nav-link active text-monospace font-weight-bold" routerLink="/user-edit-profile">Edit-Profile </a>
+            <a class="nav-link active text-monospace font-weight-bold" routerLink="/funds">Funds </a>
+            <a class="nav-link active text-monospace font-weight-bold" routerLink="/orderStatus">Orders-Status </a>
+            <app-logout></app-logout>
         </form>
     </nav>
     <nav class="navbar navbar-light bg-dark ">
         <ul class="nav">
-            <li class="active text-monospace font-weight-bold">
+            <!-- <li class="active text-monospace font-weight-bold">
                 <a class="nav-link text-monospace text-light " href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active text-monospace font-weight-bold">
@@ -33,12 +31,11 @@
             </li>
             <li class="active text-monospace font-weight-bold">
                 <a class="nav-link text-monospace text-light " href="#">Daily Deals</a>
-            </li>
+            </li> -->
         </ul>
         <div class="active text-monospace font-weight-bold form-inline" >
-            <a class="nav-link text-monospace text-primary " href="/cart">Checkout</a> 
-            <a class="nav-link text-monospace text-primary " href="checkout.html">Cart 
-            <img src="cart.png" width="30" height="30"  alt="" > :</a>
+            <a class="nav-link text-monospace text-primary " href="/cart">Cart 
+            <img src="https://media.istockphoto.com/vectors/shopping-cart-icon-vector-id1128229893?k=20&m=1128229893&s=612x612&w=0&h=uOQYRr-vTDnW60Mn8MWSwt6i9uK2SGni8jR1CKKELK8=" width="30" height="30"  alt="" > :</a>
             <div id="cart_number" class="text-light btn btn-primary">{{cartcont}}</div>
         </div>
     </nav>
@@ -65,14 +62,18 @@
    
           
     </div> 
-    <form [formGroup]="checkoutRef" (ngSubmit)="doCheckout()">
+    <form [formGroup]="checkoutRef" (ngSubmit)="addtoCart()">
         <label>Product Id::</label>
         <input type="text" formControlName="pid"/><br/>
         <label>Price: </label><br>
         <input type="text" formControlName="price"/><br/>
+        <label>quantity : </label><br>
+        <input type="text" formControlName="quantity"/><br/>
         <input type="submit" value="Add to Cart">
         <input type="reset" value="reset"/>
     </form>   
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
