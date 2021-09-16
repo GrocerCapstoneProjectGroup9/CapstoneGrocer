@@ -32,11 +32,8 @@ export class FundsComponent implements OnInit {
         console.log("Adding funds in the amount of "+money+" to account with email id: " +sessionStorage.getItem('curUserId')+ ".");
         this.msg = result;
       });
-      this.userservice.getUser(sessionStorage.getItem('curUserId')).subscribe(result=>{
-        this.fa=result
-        this.fa=this.fa.funds;
-        
-      });
+      window.location.reload()
+ 
   }
 
   gotoHome(){

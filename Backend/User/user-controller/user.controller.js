@@ -182,11 +182,11 @@ let getItemsFromCart=(request,response)=>{
 let addItemtoSales = async (request,response)=>{
     let userId=request.params.email;
     orderDetails=request.body
-    console.log(userId);
+    //console.log(userId);
     console.log(orderDetails);
     SalesModel.insertMany({userId:userId,
-        items:request.body.items,
-        total:request.body.total},(err,result)=>{
+        items:orderDetails,
+        total:request.body.total,orderStatus:"Ordered"},(err,result)=>{
             if(!err){
                 response.send("ItemAddedToSales");
             }
@@ -302,7 +302,17 @@ let getUser=(request,response)=>{
     })
     
 }
-
+let emptyCart=(request,response)=>{
+    let email=request.params.email;
+    CartModel.deleteMany({userId:email},(err,result)=>{
+        if(!err){
+            response.send("CartEmpty")
+        }
+        else{
+            response.send("CartNotEmpty")
+        }
+    })
+}
 
 module.exports={signIn,
     signUp,
@@ -322,5 +332,6 @@ module.exports={signIn,
     getAllTickets,
     lockUser,
     addFunds,
-    getUser
+    getUser,
+    emptyCart
 };

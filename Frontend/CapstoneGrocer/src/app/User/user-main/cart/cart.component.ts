@@ -23,6 +23,14 @@ export class CartComponent implements OnInit {
   gotoHome(){
     this.router.navigate(["user-main",sessionStorage.getItem('curUserId')]);
   }
-
+  placeOrder(){
+    this.userSer.placeOrder(this.cartitems,sessionStorage.getItem('curUserId')).subscribe(result=>{
+      console.log(result);
+    })
+    this.userSer.emptyCart(sessionStorage.getItem('curUserId')).subscribe(result=>{
+      console.log(result)
+    });
+    this.router.navigate(["user-main",sessionStorage.getItem('curUserId')])
+  }
 
 }

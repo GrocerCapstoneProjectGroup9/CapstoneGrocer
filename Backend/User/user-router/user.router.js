@@ -39,4 +39,6 @@ router.put("/lockUser",UserController.lockUser);
 router.put("/addFunds",UserController.addFunds);
 //http://localhost:9090/api/user/getUser
 router.get("/getUser/:email",UserController.getUser)
+//http://localhost:9090/api/user/EmptyCart/
+router.delete("/EmptyCart/:email",UserController.emptyCart)
 module.exports=router;

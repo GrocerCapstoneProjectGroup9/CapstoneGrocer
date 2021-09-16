@@ -89,4 +89,13 @@ export class UserService {
     console.log(email);
     return this.http.get('http://localhost:9090/api/user/getUser/'+email)
   }
+  getAllProducts():Observable<any>{
+    return this.http.get('http://localhost:9090/api/product/viewProducts')
+
+  }
+  placeOrder(ietm:any,email:any):Observable<any>{
+    return this.http.put('http://localhost:9090/api/user/purchase/'+email,ietm)  }
+  emptyCart(email:any):Observable<any>{
+    return this.http.delete("http://localhost:9090/api/user/EmptyCart/"+email)
+  }
 }
