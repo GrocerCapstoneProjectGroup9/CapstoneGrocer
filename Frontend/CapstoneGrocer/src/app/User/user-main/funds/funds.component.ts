@@ -23,7 +23,7 @@ export class FundsComponent implements OnInit {
     
     this.userservice.addFunds(money, sessionStorage.getItem('curUserId')).subscribe(result =>
       {
-        console.log("Adding funds in the amount of "+money+" to account id: " +sessionStorage.getItem('curUserId')+ ".");
+        console.log("Adding funds in the amount of "+money+" to account with email id: " +sessionStorage.getItem('curUserId')+ ".");
         this.msg = result;
       });
   }
