@@ -7,6 +7,7 @@ import { User } from './user.model'
 import { UserMainComponent } from './User/user-main/user-main.component';
 import { cartProduct } from './model.cart';
 import { Item } from './User/model.item';
+import { Login } from './User/login';
 @Injectable({
   providedIn: 'root'
 })
@@ -37,17 +38,12 @@ export class UserService {
         (error) => console.log(error)
       );
   }
-  updateEmail(data: any,email:any): void {
-    this.http
+  updateEmail(data: any,email:any): Observable<any> {
+    return this.http
       .put('http://localhost:9090/api/user/updateUserEmail/'+email, data, {
         responseType: 'text',
       })
-      .subscribe(
-        (result) => {
-          console.log(result)
-        },
-        (error) => console.log(error)
-      );
+  
   }
   updateAddress(data: any,email:any): void {
     this.http
@@ -74,7 +70,12 @@ export class UserService {
       );
   }
 
-  savaCartItem(cItem:cartProduct){
-    
+  lockUser(login:Login):Observable<any> {
+    console.log(login)
+    console.log("I am here")
+   return this.http
+      .put('http://localhost:9090/api/user/lockUser/',login, {
+        responseType: 'text',
+      })
   }
 }
