@@ -11,7 +11,7 @@ import { UserService } from 'src/app/user.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(public userSer:UserService,public roter:Router) { }
+  constructor(public userSer:UserService,public router:Router) { }
   cartitems:Array<Items>=[];
   ngOnInit(): void {
     this.userSer.getItemsFromCart(sessionStorage.getItem('curUserId')).subscribe(result=>{
@@ -20,6 +20,9 @@ export class CartComponent implements OnInit {
     });
 
   }
-  
+  gotoHome(){
+    this.router.navigate(["user-main",sessionStorage.getItem('curUserId')]);
+  }
+
 
 }
