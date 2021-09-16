@@ -20,6 +20,8 @@ import { ShopComponent } from './User/user-main/shop/shop.component';
 import { CartComponent } from './User/user-main/cart/cart.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { EditProfileComponent as UserEditProfileComponent} from './User/user-main/edit-profile/edit-profile.component';
+import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
     OrderStatusComponent,
     RaiseTicketComponent,
     ShopComponent,
-    CartComponent
+    CartComponent,
+    UserEditProfileComponent,
+    UserSignInComponent
   ],
   imports: [
     BrowserModule,

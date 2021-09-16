@@ -11,7 +11,7 @@ import { LoginService } from '../login.service';
 export class SignInComponent implements OnInit {
 
   loginRef = new FormGroup({
-    userid:new FormControl(),
+    email:new FormControl(),
     password:new FormControl()
   });
 

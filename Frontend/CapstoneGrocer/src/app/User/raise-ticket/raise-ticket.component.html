@@ -1,8 +1,8 @@
 <div>
     <h2>Raise Ticket</h2>
     <form [formGroup]="ticketRef" (ngSubmit)="sendTicket(ticketRef)">
-        <label>User ID</label>
-        <input type="text" formControlName="userid"/><br/>
+        <label>Email</label>
+        <input type="text" formControlName="email"/><br/>
         <label>Reason for raising ticket</label>
         <input type="text" formControlName="reason"/><br/>
         <input type="submit" value="Submit Ticket" [disabled]="!ticketRef.valid"/>
