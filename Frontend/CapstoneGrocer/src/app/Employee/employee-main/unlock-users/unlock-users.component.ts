@@ -28,7 +28,7 @@ export class UnlockUsersComponent implements OnInit {
 
   //unlock accounts
   unlock(unlockForm:NgForm){
-    let id = unlockForm.value.id;
-    this.employee.unlockuser(id);
+    let email = unlockForm.value.email;
+    this.employee.unlockuser(email);
   }
 }

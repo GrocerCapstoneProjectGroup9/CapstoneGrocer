@@ -27,17 +27,17 @@ export class EmployeeService {
   }
 
   //unlock user
-  unlockuser(user:any){
-    return this.http.put("http://localhost:9090/api/employee/unlockuser",user);
+  unlockuser(email:any){
+    return this.http.put("http://localhost:9090/api/employee/unlockuser",email);
   }
 
   //get user
   gettickets():Observable<any>{
-    return this.http.get("http://localhost:9090/api/employee/gettickets");
+    return this.http.get("http://localhost:9090/api/user/getAllTickets");
   }
 
   //edit profile
-  editpass(pass:any, id:any){
-    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, id:id});
+  editpass(pass:any, email:any){
+    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, email:email});
   }
 }
