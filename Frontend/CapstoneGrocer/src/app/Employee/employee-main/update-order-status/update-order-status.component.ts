@@ -9,12 +9,24 @@ import { EmployeeService } from 'src/app/employee.service';
 })
 export class UpdateOrderStatusComponent implements OnInit {
 
+  result:any[]=[];
+
   //initialize service
   constructor(
     public employee:EmployeeService
   ) { }
 
   ngOnInit(): void {
+    this.display();
+  }
+
+  //display tickets
+  display(){
+    this.employee.getorders().subscribe(result => {
+      for(let i of result){
+        this.result.push(i);
+      }
+    }) 
   }
 
   //change temp names
@@ -22,5 +34,6 @@ export class UpdateOrderStatusComponent implements OnInit {
     let status = order.value.status;
     let id = order.value.id;
     this.employee.changestatus(status,id);
+    window.location.reload();
   }
 }

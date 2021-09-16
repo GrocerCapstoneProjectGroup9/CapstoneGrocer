@@ -77,9 +77,14 @@ let changestatus = (req,res) => {
 //might need to search for email
 let unlockuser = (req,res) => {
     let email = req.body.email;
-    userModel.updateOne({email:email},{$set:{locked:false}},(err,res) => {
+    userModel.updateOne({email:email},{$set:{locked:false}},(err,result) => {
         if(!err){
             if (result.modifiedCount > 0){
+                ticketModel.deleteOne({email:email},(err,result) => {
+                    if(!err){
+                        console.log(result);
+                    }
+                });
                 res.send('User unlocked.');
             }
             else{

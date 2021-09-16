@@ -17,7 +17,12 @@ import { SignUpComponent } from './User/sign-up/sign-up.component';
 import { SignInComponent } from './Employee/sign-in/sign-in.component';
 import { EditProfileComponent as UserEditProfileComponent} from './User/user-main/edit-profile/edit-profile.component';
 import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
+
 import { EditEmployeeComponent } from './Admin/admin-main/edit-employee/edit-employee.component';
+
+import { FundsComponent } from './User/user-main/funds/funds.component';
+import { OrderStatusComponent } from './User/user-main/order-status/order-status.component';
+
 
 const routes: Routes = [  
   //main component paths
@@ -27,12 +32,14 @@ const routes: Routes = [
 
   //User component paths
   {path:"raise-ticket",component:RaiseTicketComponent},
-  {path:"user-main",component:UserMainComponent},
+  {path:"user-main/:email",component:UserMainComponent},
   {path:"cart",component:CartComponent},
   {path:"user-sign-up", component:SignUpComponent},
   {path:"user-sign-in", component:UserSignInComponent},
   {path:"user-edit-profile", component:UserEditProfileComponent},
-
+  {path:"funds",component:FundsComponent},
+  {path:"orderStatus",component:OrderStatusComponent},
+  
   //Employee component paths
   { path: 'employeemain', component: EmployeeMainComponent},
   { path: 'employeesignin', component: SignInComponent},
