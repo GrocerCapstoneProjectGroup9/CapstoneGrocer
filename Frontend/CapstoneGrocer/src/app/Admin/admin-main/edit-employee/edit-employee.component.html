@@ -17,7 +17,7 @@
     <br/>
     {{addMsg}}
     <br/>
-    <form [formGroup]="deleteEmployeeRef" (ngSubmit)="deleteEmployee(deleteEmployeeRef.value)" *ngIf="deleteEmployeeFlag">
+    <form [formGroup]="deleteEmployeeRef" *ngIf="deleteEmployeeFlag">
         <label>Email</label>
         <input type="text" formControlName="email"/><br/>
         <input type="submit" value="Delete Employee" [disabled]="!deleteEmployeeRef.valid"/>

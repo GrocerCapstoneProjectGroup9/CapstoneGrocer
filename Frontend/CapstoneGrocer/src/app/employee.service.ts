@@ -41,11 +41,17 @@ export class EmployeeService {
     return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, email:email},{
       responseType: 'text',
     })
-    .subscribe(
-      (result) => {
-        console.log(result)
-      },
-      (error) => console.log(error)
-    );
+    
+  }
+
+  storeEmployee(newEmployee: any): void {
+    this.http
+      .post('http://localhost:9090/api/employee/addEmployee', newEmployee, {
+        responseType: 'text',
+      })
+      .subscribe(
+        (result) => console.log(result),
+        (error) => console.log(error)
+      );
   }
 }
