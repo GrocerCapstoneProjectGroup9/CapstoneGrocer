@@ -27,6 +27,7 @@ export class SignInComponent implements OnInit {
   checkUser() {
     let login = this.loginRef.value;
     //console.log(login);
+   
     this.loginSer.checkLoginDetails(login).
     subscribe(result=>{
       if(result=="Success"){
@@ -37,11 +38,16 @@ export class SignInComponent implements OnInit {
       }else {
           this.msg = result;
           this.logincount++;
-          console.log(this.logincount);
+          if(this.logincount==3){
           console.log(sessionStorage.getItem('curUserId'))
-        
-            this.userSer.lockUser(login)
-          
+          this.userSer.lockUser(login).subscribe(result=>{
+            console.log(result)
+            if(result=="userLocked"){
+              this.msg="You have been lcoked! Please try agin later"
+            }
+          })
+
+        }
       }
     },
     error=>console.log(error));

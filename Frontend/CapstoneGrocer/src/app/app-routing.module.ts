@@ -40,7 +40,7 @@ const routes: Routes = [
   { path: 'sendrequest', component: SendRequestComponent},
   { path: 'unlockuser', component: UnlockUsersComponent},
   { path: 'updatestatus', component: UpdateOrderStatusComponent},
-  
+  {path:"",component:MainComponent}
 ];
 
 @NgModule({
