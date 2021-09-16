@@ -18,7 +18,10 @@ let signUp = async (request,response)=> {
     let user = request.body;    // receive the data from post method
     let userInfo = await UserModel.findOne({email:user.email});
     if(userInfo==null){
+        user.funds=1000;
+        user.locked=false;
         let result = await UserModel.insertMany(user);
+        
         response.send("Account created successfully");
     }else {
         response.send("Email Id must be unqiue");
