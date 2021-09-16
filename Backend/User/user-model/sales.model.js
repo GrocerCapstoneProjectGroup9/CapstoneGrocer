@@ -10,8 +10,10 @@ let Saleschema = mongoose.Schema({
            name:String,
            price:Number,
            quantity:Number,
+
            datePurchased:String,
           
+
        }],
        orderStatus:String,
        total:Number
