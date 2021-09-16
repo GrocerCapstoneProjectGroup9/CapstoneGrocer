@@ -75,4 +75,10 @@ export class UserService {
     console.log("I am here")
     return this.http.put('http://localhost:9090/api/user/lockUser', login, { responseType: 'text' })
   }
+
+  addFunds(money:any, id:any)
+  {
+    console.log("Adding funds in the amount of "+money+" to account id: " +id+ ".");
+    return this.http.put('http://localhost:9090/api/user/addFunds',{money:money, id:id},{responseType:'text'});
+  }
 }
