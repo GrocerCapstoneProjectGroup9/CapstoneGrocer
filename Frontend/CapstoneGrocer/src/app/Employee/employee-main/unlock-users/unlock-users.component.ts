@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { EmployeeService } from 'src/app/employee.service';
+import { Ticket } from 'src/app/model.ticket';
 
 @Component({
   selector: 'app-unlock-users',
@@ -9,19 +10,22 @@ import { EmployeeService } from 'src/app/employee.service';
 })
 export class UnlockUsersComponent implements OnInit {
 
-  result = "";
+  result:Ticket[]=[];
 
   constructor(
     public employee:EmployeeService,
   ) { }
 
   ngOnInit(): void {
+    this.display();
   }
 
-  //display locked accounts
+  //display tickets
   display(){
     this.employee.gettickets().subscribe(result => {
-      this.result=result;
+      for(let i of result){
+        this.result.push(i);
+      }
     }) 
   }
 
@@ -29,5 +33,6 @@ export class UnlockUsersComponent implements OnInit {
   unlock(unlockForm:NgForm){
     let email = unlockForm.value.email;
     this.employee.unlockuser(email);
+    window.location.reload();
   }
 }

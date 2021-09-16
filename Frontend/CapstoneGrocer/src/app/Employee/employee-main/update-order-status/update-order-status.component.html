@@ -1,5 +1,10 @@
 <h1>Update Order</h1>
-<div id="updateform" class="wrapper">
+<h2>List of Orders</h2>
+<body *ngFor="let i of result">
+    {{i}}
+    <br>
+</body>
+<div>
     <form #order = "ngForm" (ngSubmit) = "updateorder(order)">
         <label>Enter Order Id</label>
         <input type ="text" name="id" ngModel>

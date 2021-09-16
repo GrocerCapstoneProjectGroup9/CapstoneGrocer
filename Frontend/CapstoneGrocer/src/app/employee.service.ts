@@ -18,7 +18,7 @@ export class EmployeeService {
 
   //send request
   storerequest(message:any){
-    return this.http.post("http://localhost:9090/api/employee/storerequest",message);
+    return this.http.post("http://localhost:9090/api/employee/storerequest",{message:message});
   }
 
   //update status
@@ -28,12 +28,25 @@ export class EmployeeService {
 
   //unlock user
   unlockuser(email:any){
-    return this.http.put("http://localhost:9090/api/employee/unlockuser",email);
+    return this.http.put("http://localhost:9090/api/employee/unlockuser",{email:email},{
+      responseType: 'text',
+    })
+    .subscribe(
+      (result) => {
+        console.log(result)
+      },
+      (error) => console.log(error)
+    );
   }
 
-  //get user
+  //get tickets
   gettickets():Observable<any>{
     return this.http.get("http://localhost:9090/api/user/getAllTickets");
+  }
+
+  //get orders
+  getorders():Observable<any>{
+    return this.http.get("http://localhost:9090/api/user/getAllOrders");
   }
 
   //edit profile
