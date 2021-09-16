@@ -17,8 +17,12 @@ import { SignUpComponent } from './User/sign-up/sign-up.component';
 import { SignInComponent } from './Employee/sign-in/sign-in.component';
 import { EditProfileComponent as UserEditProfileComponent} from './User/user-main/edit-profile/edit-profile.component';
 import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
+
+import { EditEmployeeComponent } from './Admin/admin-main/edit-employee/edit-employee.component';
+
 import { FundsComponent } from './User/user-main/funds/funds.component';
 import { OrderStatusComponent } from './User/user-main/order-status/order-status.component';
+
 
 const routes: Routes = [  
   //main component paths
@@ -44,6 +48,7 @@ const routes: Routes = [
   { path: 'sendrequest', component: SendRequestComponent},
   { path: 'unlockuser', component: UnlockUsersComponent},
   { path: 'updatestatus', component: UpdateOrderStatusComponent},
+  { path: 'editemployee', component: EditEmployeeComponent},
   {path:"",component:MainComponent}
 ];
 

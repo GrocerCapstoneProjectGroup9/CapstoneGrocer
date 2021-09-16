@@ -9,6 +9,7 @@ router.put('/changestatus', EmployeeController.changestatus);
 router.put('/unlockuser', EmployeeController.unlockuser);
 router.put('/editpass', EmployeeController.editpass);
 router.put('/gettickets', EmployeeController.gettickets);
+router.put('/addEmployee', EmployeeController.insertEmployee);
 
 
 module.exports = router;

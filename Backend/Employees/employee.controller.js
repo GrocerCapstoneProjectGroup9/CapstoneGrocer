@@ -121,5 +121,22 @@ let gettickets = (req,res) =>{
     })
 };
 
+let insertEmployee = (req, res) => {
+    let emp = new employeeModel({
+      fname: req.body.fname,
+      lname: req.body.lname,
+      email: req.body.email,
+      pass: 'welcome123',
+    });
+  
+    emp.save((err, result) => {
+      if (!err) {
+        res.send('Employee stored successfully');
+      } else {
+        res.send("Employee didn't get stored");
+      }
+    });
+  };
 
-module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail};
+
+module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail, insertEmployee};
