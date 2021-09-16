@@ -2,7 +2,7 @@ let employeeModel = require('./employee.model');
 let objectId = require('mongodb').ObjectId;
 let ticketModel = require('../User/user-model/ticket.model')
 let userModel = require('../User/user-model/user.model')
-let requestModel = require('../Requests/model/requests.model')
+let requestModel = require('../Requests/model/request.model')
 let orderModel = require('../User/user-model/sales.model')
 
 let getEmployeeByEmail = (req,res) =>
