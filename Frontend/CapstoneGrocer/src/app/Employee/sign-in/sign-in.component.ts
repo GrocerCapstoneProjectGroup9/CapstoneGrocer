@@ -35,27 +35,37 @@ export class SignInComponent implements OnInit {
       console.log(result[0]);
       this.foundemployee = result[0];
 
-      if(employeePassword == "defaultpassword")
-      {
-        this.defaultPassword = true;
-      }
-      else if(this.foundemployee.password == employeePassword)
-      {
-        sessionStorage.setItem("activeUser",JSON.stringify(this.foundemployee));
-        this.router.navigate(["employeemain"]);
+      if(this.foundemployee != undefined){
+
+        if(employeePassword == "defaultpassword")
+        {
+          this.defaultPassword = true;
+        }
+        else if(this.foundemployee.password == employeePassword)
+        {
+          sessionStorage.setItem("activeUser",JSON.stringify(this.foundemployee));
+          this.router.navigate(["employeemain"]);
+        }
+        else
+        {
+          this.msg = "Invalid password. Try again."
+        }
       }
       else
       {
-        this.msg = "Invalid password. Try again."
+        this.msg = "User with email id " + employeeEmail + " does not exist.";
       }
     });
+    
+      
 
 
   }
 
-  changeEmployeePassword(data:any)
+  changeEmployeePassword(employeeRef:any)
   {
-
+    let employeeEmail = employeeRef.employeeEmail;
+    let employeePassword = employeeRef.employeePassword;
   }
 
 }
