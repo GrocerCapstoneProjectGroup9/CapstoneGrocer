@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
 
 @Component({
@@ -26,7 +27,7 @@ export class EditProfileComponent implements OnInit {
     phone:new FormControl("",[Validators.required])
   });
 
-  constructor(public userProfile: UserService) { }
+  constructor(public userProfile: UserService,public router:Router) { }
   passMsg?:string
   addrMsg?:string
   emailMsg?:string
@@ -118,4 +119,8 @@ export class EditProfileComponent implements OnInit {
     this.phoneMsg="";
 
   }
+  gotoHome(){
+    this.router.navigate(["user-main",sessionStorage.getItem('curUserId')]);
+  }
+
 }
