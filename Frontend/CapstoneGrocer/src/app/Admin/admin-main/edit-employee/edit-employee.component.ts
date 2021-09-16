@@ -13,7 +13,6 @@ export class EditEmployeeComponent implements OnInit {
     firstName:new FormControl("",[Validators.required]),
     lastName:new FormControl("",[Validators.required]),
     email:new FormControl("",[Validators.required]),
-    password:new FormControl("",[Validators.required])
   });
   deleteEmployeeRef = new FormGroup({
     email:new FormControl("",[Validators.required])
@@ -28,24 +27,13 @@ export class EditEmployeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addEmployee(newEmployee: any): void{
-    this.empProfile.storeEmployee(newEmployee);
-    this.addMsg = 'Employee added';
+  addEmployee(): void{
+    let login = this.addEmployeeRef.value;
+ 
+    this.empProfile.storeEmployee(login).
+    subscribe(result=>this.addMsg=result,error=>console.log(error));
+ 
     this.addEmployeeRef.reset();
-
-    // this.empProfile.storeEmployee(newEmployee).subscribe(
-    //   (result) => {
-    //     if(result=="emailUpdated"){
-    //       this.addMsg = 'Employee added'
-    //     }
-    //     else{
-    //       this.addMsg='Employee not added'
-    //     }
-    //   },
-    //   (error) => console.log(error)
-    // );
-   
-    // this.addEmployeeRef.reset()
   }
 
   // delEmployee(empl: any): void{
