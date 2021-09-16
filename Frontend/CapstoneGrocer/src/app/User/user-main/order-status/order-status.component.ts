@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-order-status',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderStatusComponent implements OnInit {
 
-  constructor() { }
+  constructor(public userSer:UserService,public router:Router) { }
 
   ngOnInit(): void {
   }
-
+  gotoHome(){
+    this.router.navigate(["user-main",sessionStorage.getItem('curUserId')]);
+  }
 }

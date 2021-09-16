@@ -1,11 +1,13 @@
-<h1>Unlock User</h1>
+<div class="wrapper" id="unlockform">
+<h2>Unlock User</h2>
 <body ng-init="display()">
     {{result}}
 </body>
 <div>
     <form #unlockForm = "ngForm" (ngSubmit) = "unlock(unlockForm)">
         <label>Enter User Email</label>
-        <input type ="text" name="email" ngModel>
+        <input type ="text" name="email" placeholder="Email Address" ngModel><br>
         <input type = "submit" value = "Submit">
     </form>
+</div>
 </div>
