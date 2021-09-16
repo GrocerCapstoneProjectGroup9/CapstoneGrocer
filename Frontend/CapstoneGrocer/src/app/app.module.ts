@@ -22,6 +22,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditProfileComponent as UserEditProfileComponent} from './User/user-main/edit-profile/edit-profile.component';
 import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
+import { AdminSignInComponent } from './Admin/admin-sign-in/admin-sign-in.component';
+import { AdminMainComponent } from './Admin/admin-main/admin-main.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.c
     ShopComponent,
     CartComponent,
     UserEditProfileComponent,
-    UserSignInComponent
+    UserSignInComponent,
+    AdminSignInComponent,
+    AdminMainComponent
   ],
   imports: [
     BrowserModule,
