@@ -176,7 +176,74 @@ let getItemsFromCart=(request,response)=>{
     
     });
 }
-let addItemtoSales 
+let addItemtoSales = async (request,response)=>{
+    let userId=request.params.email;
+    orderDetails=request.body
+    console.log(userId);
+    console.log(orderDetails);
+    SalesModel.insertMany({userId:userId,
+        items:request.body.items,
+        total:request.body.total},(err,result)=>{
+            if(!err){
+                response.send("ItemAddedToSales");
+            }
+            else{
+                response.send("ItemNotAddedToSales");
+            }
+        });
+}
+let getOrdersOfUser=(request,response)=>{
+    let userId=request.params.email;
+    SalesModel.find({userId:userId},(err,result)=>{
+        if(!err){
+            response.json(result)
+        }
+        else{
+            response.json(err);
+        }
+    
+    });
+}
+let getAllorders=(request,response)=>{
+  
+    SalesModel.find((err,result)=>{
+        if(!err){
+            response.json(result)
+        }
+        else{
+            response.json(err);
+        }
+    
+    });
+}
+let RaiseTicket=(request,response)=>{
+    userDetails=request.body;
+    let result=UserModel.findOne({email:userDetails.email})
+    if(result==null){
+        response.send("UserNotPresnt")
+    }
+    else{
+        TicketModel.insertMany(userDetails,(err,result)=>{
+            if(!err){
+                response.send("TickedAdded")
+            }
+            else{
+                console.log(err)
+                response.send("TicketNotAdded")
+            }
+        });
+    }
+}
+let getAllTickets=(request,response)=>{
+    TicketModel.find((err,result)=>{
+        if(!err){
+            response.json(result);
+        }
+        else{
+            response.json(err);
+        }
+    })
+}
 module.exports={signIn,
     signUp,
     addItemtoCart,
@@ -187,6 +254,10 @@ module.exports={signIn,
     updateAddress,
     updatePhone,
     updateCartItem,
-    getItemsFromCart
-
+    getItemsFromCart,
+    addItemtoSales,
+    getAllorders,
+    getOrdersOfUser,
+    RaiseTicket,
+    getAllTickets
 };
