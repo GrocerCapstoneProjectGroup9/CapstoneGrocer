@@ -293,5 +293,6 @@ module.exports={signIn,
     getOrdersOfUser,
     RaiseTicket,
     getAllTickets,
-    lockUser
+    lockUser,
+    addFunds
 };
