@@ -99,6 +99,7 @@ let unlockuser = (req,res) => {
 let editpass = (req,res) => {
     let pass = req.body.pass;
     let email = req.body.email;
+
     employeeModel.updateOne({email:email},{$set:{password:pass}}, (err,result) =>{
         if (!err){
             if (result.modifiedCount > 0){

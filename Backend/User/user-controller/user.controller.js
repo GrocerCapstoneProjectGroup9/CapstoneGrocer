@@ -257,6 +257,28 @@ let lockUser=(request,response)=>{
         }
     })
 }
+
+
+let addFunds=(res,req)=>
+{
+    let money = req.body.money;
+    let id = req.body.id;
+
+    UserModel.findOneAndUpdate({_id:id},{$set:{funds:money}},(err,result)=>
+    {
+        if(!err)
+        {   
+            if (result.nModified > 0 || result.matchedCount > 0){
+                res.send('Funds Added.');
+            }
+            else{
+                res.send('Account not found.');
+            }
+        }
+    });
+}
+
+
 module.exports={signIn,
     signUp,
     addItemtoCart,
@@ -273,5 +295,6 @@ module.exports={signIn,
     getOrdersOfUser,
     RaiseTicket,
     getAllTickets,
-    lockUser
+    lockUser,
+    addFunds
 };
