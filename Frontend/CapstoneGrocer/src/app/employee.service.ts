@@ -41,11 +41,6 @@ export class EmployeeService {
     return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, email:email},{
       responseType: 'text',
     })
-    .subscribe(
-      (result) => {
-        console.log(result)
-      },
-      (error) => console.log(error)
-    );
+
   }
 }
