@@ -15,6 +15,8 @@ import { CartComponent } from './User/user-main/cart/cart.component';
 import { MainComponent } from './main/main.component';
 import { SignUpComponent } from './User/sign-up/sign-up.component';
 import { SignInComponent } from './Employee/sign-in/sign-in.component';
+import { EditProfileComponent as UserEditProfileComponent} from './User/user-main/edit-profile/edit-profile.component';
+import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
 
 const routes: Routes = [  
   //main component paths
@@ -26,7 +28,9 @@ const routes: Routes = [
   {path:"raise-ticket",component:RaiseTicketComponent},
   {path:"user-main",component:UserMainComponent},
   {path:"cart",component:CartComponent},
-  {path:"user-sign-in", component:SignUpComponent},
+  {path:"user-sign-up", component:SignUpComponent},
+  {path:"user-sign-in", component:UserSignInComponent},
+  {path:"user-edit-profile", component:UserEditProfileComponent},
 
   //Employee component paths
   { path: 'employeemain', component: EmployeeMainComponent},

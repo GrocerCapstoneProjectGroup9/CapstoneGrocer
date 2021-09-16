@@ -13,7 +13,7 @@ import { UserService } from 'src/app/user.service';
 export class RaiseTicketComponent implements OnInit {
 
   ticketRef = new FormGroup({
-    userid:new FormControl("",[Validators.required]),
+    email:new FormControl("",[Validators.required]),
     reason:new FormControl("",[Validators.required])
   });
 
@@ -25,7 +25,7 @@ export class RaiseTicketComponent implements OnInit {
   }
 
   sendTicket(data:any){
-    if(data.userid != "" && data.reason != ""){
+    if(data.email != "" && data.reason != ""){
       this.msg="Ticket sent";
       // inside users service goes a function called storeTicketData that posts to a path in the backend using data
       this.ticket.storeTicketData(data);

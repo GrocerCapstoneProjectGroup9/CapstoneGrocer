@@ -12,9 +12,10 @@ export class SignUpComponent implements OnInit {
   loginRef = new FormGroup({
     email:new FormControl(),
     password:new FormControl(),
-    firstname:new FormControl(),
-    lastname:new FormControl(),
-    phone:new FormControl()
+    fname:new FormControl(),
+    lname:new FormControl(),
+    phone:new FormControl(),
+    address:new FormControl()
   })
 
   constructor(public loginSer:LoginService) { }
