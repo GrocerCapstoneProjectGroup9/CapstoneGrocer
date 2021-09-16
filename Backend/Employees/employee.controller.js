@@ -121,22 +121,34 @@ let gettickets = (req,res) =>{
     })
 };
 
-let insertEmployee = (req, res) => {
-    let emp = new employeeModel({
-      fname: req.body.fname,
-      lname: req.body.lname,
-      email: req.body.email,
-      pass: 'welcome123',
-    });
+// let insertEmployee = (req, res) => {
+//     let emp = new employeeModel({
+//       firstName: req.body.firstName,
+//       lastName: req.body.lastName,
+//       email: req.body.email,
+//       password: 'welcome123',
+//     });
   
-    emp.save((err, result) => {
-      if (!err) {
-        res.send('Employee stored successfully');
-      } else {
-        res.send("Employee didn't get stored");
-      }
-    });
-  };
+//     emp.save((err, result) => {
+//       if (!err) {
+//         res.send('Employee stored successfully');
+//       } else {
+//         res.send("Employee didn't get stored");
+//       }
+//     });
+//   };
+
+let insertEmployee = async (request,response)=> {
+    let empl = request.body;    // receive the data from post method
+    let emplInfo = await employeeModel.findOne({email:empl.email});
+    if(emplInfo==null){
+        let result = await employeeModel.insertMany(empl);
+        
+        response.send("Employee created successfully");
+    }else {
+        response.send("Email Id must be unqiue");
+    }    
+}
 
 
 module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail, insertEmployee};

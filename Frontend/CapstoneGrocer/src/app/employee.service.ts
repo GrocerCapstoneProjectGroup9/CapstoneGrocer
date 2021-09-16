@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { employee } from './employee.model'
+import { Login } from './User/login';
 
 @Injectable({
   providedIn: 'root'
@@ -58,16 +59,10 @@ export class EmployeeService {
     
   }
 
-  storeEmployee(newEmployee: any): void {
-    this.http
-      .post('http://localhost:9090/api/employee/addEmployee', newEmployee, {
-        responseType: 'text',
-      })
-      .subscribe(
-        (result) => console.log(result),
-        (error) => console.log(error)
-      );
-
+  storeEmployee(login:Login):Observable<any>{
+      return this.http.post("http://localhost:9090/api/employee/addEmployee",login,
+      {responseType:'text'});
+    
 
 
   }
