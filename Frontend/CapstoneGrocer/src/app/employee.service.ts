@@ -38,6 +38,6 @@ export class EmployeeService {
 
   //edit profile
   editpass(pass:any, email:any){
-    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, email:email});
+    return this.http.put("http://localhost:9090/api/employee/editpass",{pass:pass, email:email},{ responseType: 'text' });
   }
 }

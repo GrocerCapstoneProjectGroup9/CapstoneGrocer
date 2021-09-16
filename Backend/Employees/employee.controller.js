@@ -94,9 +94,11 @@ let unlockuser = (req,res) => {
 let editpass = (req,res) => {
     let pass = req.body.pass;
     let email = req.body.email;
+
+    console.log(pass, email);
     employeeModel.updateOne({email:email},{$set: {password:pass}}, (err,result) =>{
         if (!err){
-            if (result.nModified > 0){
+            if (result.nModified > 0 || result.matchedCount > 0){
                 res.send('Password updated.');
             }
             else{

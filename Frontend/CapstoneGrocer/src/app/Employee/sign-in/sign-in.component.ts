@@ -66,6 +66,12 @@ export class SignInComponent implements OnInit {
   {
     let employeeEmail = employeeRef.employeeEmail;
     let employeePassword = employeeRef.employeePassword;
+
+    this.employeeservice.editpass(employeePassword, employeeEmail).subscribe(result =>
+    {
+      console.log(result);
+      this.msg = result;
+    });
   }
 
 }
