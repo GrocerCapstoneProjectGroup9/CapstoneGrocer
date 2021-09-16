@@ -1,5 +1,9 @@
-let employeeModel = require('./employee.model.js');
+let employeeModel = require('./employee.model');
 let objectId = require('mongodb').ObjectId;
+let ticketModel = require('../User/user-model/ticket.model')
+let userModel = require('../User/user-model/user.model')
+let requestModel = require('../Requests/model/requests.model')
+let orderModel = require('../User/user-model/sales.model')
 //add admin model
 
 let getEmployeeByEmail = (req,res) =>
@@ -102,22 +106,27 @@ let changeEmployeePassword = (req,res) =>
     });
 }
 
+
+//Store request to admin
+//needs change based on request model
 let storerequest = (req,res) => {
     let message = req.body.message;
     let request = new requestmodel({
         message:message
     });
-    messagemodel.insertMany([request],(err,res)=>{
+    requestModel.insertMany([request],(err,res)=>{
         if (!err){
             res.send("Request added");
         }
     })
 }
 
+//Changes the status of an order
+//needs change based on sale model
 let changestatus = (req,res) => {
     let status = req.params.status;
     let orderid = req.params.orderid;
-    ordermodel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
+    orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
         if(!err){
             if (result.nModified > 0){
                 res.send('Status updated.');
@@ -127,12 +136,35 @@ let changestatus = (req,res) => {
             }
         }
     })
+    if (status == "Cancelled"){
+        orderModel.find({_id:orderid},(err,res)=>{
+            if(!err){
+                let refund = res.total;
+                userModel.find({_id:res.userId},(error,result)=>{
+                    if(!error){
+                        refund = refund + result.funds;
+                        userModel.updateOne({_id:res.userId},{$set:{funds:refund}},(error1,temp)=>{
+                            if(!error1){
+                                if (result.nModified > 0){
+                                    res.send('Refund given.');
+                                }
+                                else{
+                                    res.send('Account not found');
+                                }
+                            }
+                        })
+                    }
+                })
+            }
+        })
+    }
 }
 
 //unlocks a user account
+//might need to search for email
 let unlockuser = (req,res) => {
     let id = req.body.user;
-    usermodel.updateOne({_id:id},{$set:{lock:false}},(err,res) => {
+    userModel.updateOne({_id:id},{$set:{locked:false}},(err,res) => {
         if(!err){
             if (result.nModified > 0){
                 res.send('User unlocked.');
@@ -161,5 +193,14 @@ let editpass = (req,res) => {
     })
 }
 
+//obtain tickets
+let gettickets = (req,res) =>{
+    ticketModel.find({},(err,result)=>{
+        if (!err){
+            res.send(result);
+        }
+    })
+}
 
-module.exports = {editpass, unlockuser, changestatus, storerequest, employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };
+
+module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };
