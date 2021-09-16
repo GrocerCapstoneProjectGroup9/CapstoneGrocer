@@ -37,7 +37,7 @@
             </li>
         </ul>
         <div class="active text-monospace font-weight-bold form-inline" >
-            <a class="nav-link text-monospace text-primary " href="/cart">Checkout</a> 
+            <a class="nav-link text-monospace text-primary"  routerLink="/cart">Checkout</a> 
             <a class="nav-link text-monospace text-primary " href="checkout.html">Cart 
             <img src="cart.png" width="30" height="30"  alt="" > :</a>
             <div id="cart_number" class="text-light btn btn-primary">{{cartcont}}</div>
@@ -71,10 +71,14 @@
         <input type="text" formControlName="pid"/><br/>
         <label>Price: </label><br>
         <input type="text" formControlName="price"/><br/>
+        <label>quantity : </label><br>
+        <input type="text" formControlName="quantity"/><br/>
         <input type="submit" value="Add to Cart">
         <input type="reset" value="reset"/>
     </form>   
     <a routerLink="/user-edit-profile">User Edit</a>
+
+    <app-funds></app-funds>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

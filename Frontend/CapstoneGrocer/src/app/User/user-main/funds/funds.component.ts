@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/user.service';
 
 @Component({
   selector: 'app-funds',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FundsComponent implements OnInit {
 
-  constructor() { }
+  msg:any;
+
+  constructor(public userservice:UserService) { }
 
   ngOnInit(): void {
+  }
+
+  addFunds(fundsRef:any)
+  {
+    let money = fundsRef.money;
+    let id = fundsRef.accountId;
+
+    this.userservice.addFunds(money, id).subscribe(result =>
+      {
+        console.log("Adding funds in the amount of "+money+" to account id: " +id+ ".");
+        this.msg = result;
+      });
   }
 
 }

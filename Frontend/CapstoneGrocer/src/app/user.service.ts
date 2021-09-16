@@ -18,6 +18,10 @@ export class UserService {
     return this.http.put('http://localhost:9090/api/user/addItemtoCart/'+email,item,
     {responseType:'text'})
   }
+  getItemsFromCart(email:any):Observable<any>{
+    console.log(email);
+    return this.http.get('http://localhost:9090/api/user/getCartItems/'+email)
+  }
 
 
   storeTicketData(data: any): Observable<any> {
@@ -74,5 +78,11 @@ export class UserService {
     console.log(login)
     console.log("I am here")
     return this.http.put('http://localhost:9090/api/user/lockUser', login, { responseType: 'text' })
+  }
+
+  addFunds(money:any, id:any)
+  {
+    console.log("Adding funds in the amount of "+money+" to account id: " +id+ ".");
+    return this.http.put('http://localhost:9090/api/user/addFunds',{money:money, id:id},{responseType:'text'});
   }
 }
