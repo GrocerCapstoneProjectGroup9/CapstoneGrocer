@@ -18,6 +18,6 @@ export class LogoutComponent implements OnInit {
   //route to sign in page
   logout(){
     sessionStorage.removeItem("activeUser");
-    this.router.navigate(["main"]);
+    this.router.navigate([""]);
   }
 }

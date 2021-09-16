@@ -22,8 +22,7 @@ export class UnlockUsersComponent implements OnInit {
   display(){
     this.employee.gettickets().subscribe(result => {
       this.result=result;
-    })
-    
+    }) 
   }
 
   //unlock accounts

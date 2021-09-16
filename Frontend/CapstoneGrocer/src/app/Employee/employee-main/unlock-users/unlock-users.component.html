@@ -5,7 +5,7 @@
 <div>
     <form #unlockForm = "ngForm" (ngSubmit) = "unlock(unlockForm)">
         <label>Enter User Email</label>
-        <input type ="text" name="email">
+        <input type ="text" name="email" ngModel>
         <input type = "submit" value = "Submit">
     </form>
 </div>
