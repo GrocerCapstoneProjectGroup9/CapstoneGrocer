@@ -33,7 +33,7 @@ export class EmployeeService {
 
   //get user
   gettickets():Observable<any>{
-    return this.http.get("http://localhost:9090/api/user/");
+    return this.http.get("http://localhost:9090/api/employee/gettickets");
   }
 
   //edit profile
