@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { EmployeeService } from 'src/app/employee.service';
 
 @Component({
-  selector: 'app-edit-profile',
+  selector: 'app-employee-edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.css']
 })

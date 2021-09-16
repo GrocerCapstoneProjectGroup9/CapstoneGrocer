@@ -9,11 +9,14 @@ import { Observable } from 'rxjs';
   templateUrl: './sign-in.component.html',
   styleUrls: ['./sign-in.component.css']
 })
+
 export class SignInComponent implements OnInit {
 
   foundemployee:any;
 
   defaultPassword:boolean = false;
+
+  msg:any;
 
   constructor(public router:Router, public employeeservice:EmployeeService) 
   {
@@ -30,7 +33,21 @@ export class SignInComponent implements OnInit {
 
     this.employeeservice.getEmployee(employeeEmail).subscribe(result=>{
       console.log(result[0]);
-      this.foundemployee = result[0].firstName;
+      this.foundemployee = result[0];
+
+      if(employeePassword == "defaultpassword")
+      {
+        this.defaultPassword = true;
+      }
+      else if(this.foundemployee.password == employeePassword)
+      {
+        sessionStorage.setItem("activeUser",JSON.stringify(this.foundemployee));
+        this.router.navigate(["employeemain"]);
+      }
+      else
+      {
+        this.msg = "Invalid password. Try again."
+      }
     });
 
 
