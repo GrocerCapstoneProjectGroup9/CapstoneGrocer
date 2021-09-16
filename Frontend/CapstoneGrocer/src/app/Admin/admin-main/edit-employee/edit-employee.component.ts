@@ -27,10 +27,10 @@ export class EditEmployeeComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addEmployee(): void{
-    let login = this.addEmployeeRef.value;
+  addEmployee(newEmpl: any): void{
+    // let login = this.addEmployeeRef.value;
  
-    this.empProfile.storeEmployee(login).
+    this.empProfile.storeEmployee(newEmpl).
     subscribe(result=>this.addMsg=result,error=>console.log(error));
  
     this.addEmployeeRef.reset();

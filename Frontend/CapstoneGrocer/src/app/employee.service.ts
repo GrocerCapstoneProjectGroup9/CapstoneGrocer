@@ -59,8 +59,8 @@ export class EmployeeService {
     
   }
 
-  storeEmployee(login:Login):Observable<any>{
-      return this.http.post("http://localhost:9090/api/employee/addEmployee",login,
+  storeEmployee(newEmpl:any):Observable<any>{
+      return this.http.post("http://localhost:9090/api/employee/addEmployee",{firstName:newEmpl.firstName, lastName:newEmpl.lastName, email:newEmpl.password},
       {responseType:'text'});
     
 
