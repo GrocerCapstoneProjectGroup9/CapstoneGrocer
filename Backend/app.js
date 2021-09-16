@@ -4,7 +4,8 @@ let mongoose = require("mongoose");
 let cors = require("cors");
 let userRouter=require("./User/user-router/user.router");
 let employeeRouter = require("./Employees/employee.router")
-
+let adminRouter=require("./Admin/router/admin.router")
+let productRouter=require("./Products/router/product.router")
 let app=express();
 
 app.use(cors());
@@ -19,5 +20,6 @@ then(res=>console.log("connected")).
 app.use("/api/user",userRouter);
 
 app.use("/api/employee", employeeRouter);
-
+app.use("/api/admin",adminRouter);
+app.use("/api/product",productRouter)
 app.listen(9090,()=>console.log("Server running on port number 9090"))
