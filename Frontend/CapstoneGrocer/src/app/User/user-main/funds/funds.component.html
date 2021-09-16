@@ -1,6 +1,5 @@
 <h3>Funds</h3>
 <form #fundsRef = "ngForm" (ngSubmit) = "addFunds(fundsRef.value)">
-    <input type="text" name="accountId" placeholder="User Id" ngModel><br>
-    <input type="text" name="money" placeholder="Amount to be added" ngModel><br>
+    <input type="number" name="money" placeholder="Amount to be added" ngModel><br>
     <input type="submit" value="Add Funds">
 </form>
