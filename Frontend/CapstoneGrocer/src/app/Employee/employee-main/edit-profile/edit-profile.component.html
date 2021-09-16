@@ -2,7 +2,8 @@
 <div>
     <form #editprofile = "ngForm" (ngSubmit) = "changepass(editprofile)">
         <label>New Password</label>
-        <input type ="text" name="pass">
+        <input type ="text" name="pass" ngModel>
         <input type = "submit" value = "Submit">
     </form>
+    {{result}}
 </div>

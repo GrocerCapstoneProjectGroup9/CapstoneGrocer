@@ -1,9 +1,8 @@
 <div id = "sendRequestForm">
     <h2>Send Request</h2>
-    <form #requestRef = "ngForm" (ngSubmit) = "sendrequest(requestRef.value)">
+    <form #requestRef = "ngForm" (ngSubmit) = "sendrequest(requestRef)">
         <input type="text" name="senderName" placeholder="Name" ngModel>
         <input type="text" name="request" placeholder="Request" ngModel>
         <input type="submit" value="Send Request">
     </form>
-    <a routerLink=".." class="nav-link">Back</a><br>
 </div>

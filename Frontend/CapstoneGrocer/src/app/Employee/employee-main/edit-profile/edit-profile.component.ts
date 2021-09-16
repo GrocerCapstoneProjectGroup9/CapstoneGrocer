@@ -9,6 +9,8 @@ import { EmployeeService } from 'src/app/employee.service';
 })
 export class EditProfileComponent implements OnInit {
 
+  result:any;
+
   //initialize services
   constructor(
     public employee:EmployeeService
@@ -25,6 +27,7 @@ export class EditProfileComponent implements OnInit {
       let empjson = JSON.parse(emp);
       let email = empjson.email;
       this.employee.editpass(pass,email);
+      this.result = "Password Changed to "+pass;
     }
   }
 }

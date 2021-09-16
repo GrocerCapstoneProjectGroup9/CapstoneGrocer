@@ -31,8 +31,8 @@ let storerequest = (req,res) => {
         if (!err){
             res.send("Request added");
         }
-    })
-}
+    });
+};
 
 //Changes the status of an order
 //needs change based on sale model
@@ -41,14 +41,14 @@ let changestatus = (req,res) => {
     let orderid = req.body.orderid;
     orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
         if(!err){
-            if (result.nModified > 0){
+            if (result.modifiedCount > 0){
                 res.send('Status updated.');
             }
             else{
                 res.send('Order not found');
             }
         }
-    })
+    });
     if (status == "Cancelled"){
         orderModel.find({_id:orderid},(err,res)=>{
             if(!err){
@@ -58,7 +58,7 @@ let changestatus = (req,res) => {
                         refund = refund + result.funds;
                         userModel.updateOne({_id:res.userId},{$set:{funds:refund}},(error1,temp)=>{
                             if(!error1){
-                                if (result.nModified > 0){
+                                if (result.modifiedCount > 0){
                                     res.send('Refund given.');
                                 }
                                 else{
@@ -70,8 +70,8 @@ let changestatus = (req,res) => {
                 })
             }
         })
-    }
-}
+    };
+};
 
 //unlocks a user account
 //might need to search for email
@@ -79,7 +79,7 @@ let unlockuser = (req,res) => {
     let email = req.body.email;
     userModel.updateOne({email:email},{$set:{locked:false}},(err,res) => {
         if(!err){
-            if (result.nModified > 0){
+            if (result.modifiedCount > 0){
                 res.send('User unlocked.');
             }
             else{
@@ -87,7 +87,7 @@ let unlockuser = (req,res) => {
             }
         }
     })
-}
+};
 
 
 //changes the employee password
@@ -95,10 +95,9 @@ let editpass = (req,res) => {
     let pass = req.body.pass;
     let email = req.body.email;
 
-    console.log(pass, email);
-    employeeModel.updateOne({email:email},{$set: {password:pass}}, (err,result) =>{
+    employeeModel.updateOne({email:email},{$set:{password:pass}}, (err,result) =>{
         if (!err){
-            if (result.nModified > 0 || result.matchedCount > 0){
+            if (result.modifiedCount > 0){
                 res.send('Password updated.');
             }
             else{
@@ -106,7 +105,7 @@ let editpass = (req,res) => {
             }
         }
     })
-}
+};
 
 //obtain tickets
 let gettickets = (req,res) =>{
@@ -115,7 +114,7 @@ let gettickets = (req,res) =>{
             res.send(result);
         }
     })
-}
+};
 
 
 module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail};
