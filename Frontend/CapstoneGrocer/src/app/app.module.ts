@@ -24,6 +24,7 @@ import { EditProfileComponent as UserEditProfileComponent} from './User/user-mai
 import { SignInComponent as UserSignInComponent } from './User/sign-in/sign-in.component';
 import { AdminSignInComponent } from './Admin/admin-sign-in/admin-sign-in.component';
 import { AdminMainComponent } from './Admin/admin-main/admin-main.component';
+import { EditEmployeeComponent } from './Admin/admin-main/edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AdminMainComponent } from './Admin/admin-main/admin-main.component';
     UserEditProfileComponent,
     UserSignInComponent,
     AdminSignInComponent,
-    AdminMainComponent
+    AdminMainComponent,
+    EditEmployeeComponent
   ],
   imports: [
     BrowserModule,
