@@ -85,4 +85,8 @@ export class UserService {
     console.log("Adding funds in the amount of "+money+" to account id: " +id+ ".");
     return this.http.put('http://localhost:9090/api/user/addFunds',{money:money, id:id},{responseType:'text'});
   }
+  getUser(email:any){
+    console.log(email);
+    return this.http.get('http://localhost:9090/api/user/getUser/'+email)
+  }
 }
