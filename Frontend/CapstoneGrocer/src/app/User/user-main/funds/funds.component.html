@@ -1,1 +1,6 @@
-<p>funds works!</p>
+<h3>Funds</h3>
+<form #fundsRef = "ngForm" (ngSubmit) = "addFunds(fundsRef.value)">
+    <input type="text" name="accountId" placeholder="Account Id"><br>
+    <input type="text" name="money" placeholder="Amount to be added"><br>
+    <input type="submit" value="Add Funds">
+</form>
