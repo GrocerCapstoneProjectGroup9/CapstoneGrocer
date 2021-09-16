@@ -1,4 +1,4 @@
-var product = require("../model/product.model");
+var product = require("../../Products/model/product.model");
 var mongoose = require('mongoose');
 
 
