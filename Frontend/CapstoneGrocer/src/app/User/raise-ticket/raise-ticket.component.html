@@ -1,13 +1,14 @@
 <div>
     <h2>Raise Ticket</h2>
-    <form [formGroup]="ticketRef" (ngSubmit)="sendTicket(ticketRef)">
+    <form [formGroup]="ticketRef" (ngSubmit)="raiseTicket()" *ngIf="!formflag">
         <label>Email</label>
         <input type="text" formControlName="email"/><br/>
         <label>Reason for raising ticket</label>
-        <input type="text" formControlName="reason"/><br/>
+        <input type="text" formControlName="issue"/><br/>
         <input type="submit" value="Submit Ticket" [disabled]="!ticketRef.valid"/>
     </form>
     <br/>
+    <a routerLink="/user-sign-in">Sign In</a>
     <br/>
     {{msg}}
     

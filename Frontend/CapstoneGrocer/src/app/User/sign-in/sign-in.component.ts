@@ -28,8 +28,10 @@ export class SignInComponent implements OnInit {
     this.loginSer.checkLoginDetails(login).
     subscribe(result=>{
       if(result=="Success"){
-        // this.router.navigate(["home",login.email]);
+        
         this.msg = "Sign in successful";
+        sessionStorage.setItem('curUserId', login.email);
+        this.router.navigate(["user-main",login.email]);
       }else {
           this.msg = result;
       }

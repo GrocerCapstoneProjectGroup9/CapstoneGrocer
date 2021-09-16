@@ -13,16 +13,17 @@ import { UserService } from 'src/app/user.service';
 export class EditProfileComponent implements OnInit {
 
   editPasswordRef = new FormGroup({
-    newpass:new FormControl("",[Validators.required])
+    password:new FormControl("",[Validators.required]),
+    email:new FormControl("",[Validators.required])
   });
   editAddressRef = new FormGroup({
-    newaddress:new FormControl("",[Validators.required])
+    address:new FormControl("",[Validators.required])
   });
   editEmailRef = new FormGroup({
-    newemail:new FormControl("",[Validators.required])
+    email:new FormControl("",[Validators.required])
   });
   editPhoneRef = new FormGroup({
-    newphone:new FormControl("",[Validators.required])
+    phone:new FormControl("",[Validators.required])
   });
 
   constructor(public userProfile: UserService) { }
@@ -30,27 +31,81 @@ export class EditProfileComponent implements OnInit {
   addrMsg?:string
   emailMsg?:string
   phoneMsg?:string
+  editPasswordFalg:boolean=false;
+  editAddressFlag:boolean=false;
+  editEmailFalg:boolean=false;
+  editPhoneFlag:boolean=false;
 
   ngOnInit(): void {
   }
 
   updatePassword(newPass: any): void{
+    console.log(newPass)
     this.userProfile.updatePassword(newPass);
     this.passMsg = 'Password updated'
+    this.editPasswordRef.reset()
   }
 
   updateAddress(newAddress: any): void{
-    this.userProfile.updateAddress(newAddress);
+    this.userProfile.updateAddress(newAddress,sessionStorage.getItem('curUserId'));
     this.addrMsg = 'Address updated'
+    this.editAddressRef.reset()
   }
 
   updateEmail(newEmail: any): void{
-    this.userProfile.updateEmail(newEmail);
+    this.userProfile.updateEmail(newEmail,sessionStorage.getItem('curUserId'));
+    sessionStorage.setItem('curUserId', newEmail.email);
     this.emailMsg = 'Email updated'
+    this.editEmailRef.reset()
   }
 
   updatePhone(newPhone: any): void{
-    this.userProfile.updatePhone(newPhone);
+    this.userProfile.updatePhone(newPhone,sessionStorage.getItem('curUserId'));
     this.phoneMsg = 'Phone updated'
+    this.editPhoneRef.reset();
+  }
+  enableEE(){
+    this.editAddressFlag=false
+    this.editEmailFalg=true
+    this.editPasswordFalg=false
+    this.editPhoneFlag=false
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  enableEP(){
+    this.editAddressFlag=false
+    this.editEmailFalg=false
+    this.editPasswordFalg=true
+    this.editPhoneFlag=false
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  enableEA(){
+    this.editAddressFlag=true
+    this.editEmailFalg=false
+    this.editPasswordFalg=false
+    this.editPhoneFlag=false
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
+  }
+  enableEPhone(){
+    this.editAddressFlag=false
+    this.editEmailFalg=false
+    this.editPasswordFalg=false
+    this.editPhoneFlag=true
+    this.passMsg="";
+    this.addrMsg="";
+    this.emailMsg="";
+    this.phoneMsg="";
+
   }
 }

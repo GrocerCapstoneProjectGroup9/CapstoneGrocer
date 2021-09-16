@@ -1,32 +1,38 @@
 <div>
     <h2>Edit Profile</h2>
-    <form [formGroup]="editPasswordRef" (ngSubmit)="updatePassword(editPasswordRef.value)">
+    <input type="button" value="Edit Email" (click)=enableEE()>
+    <input type="button" value="Edit Password" (click)=enableEP()>
+    <input type="button" value="Edit Address" (click)=enableEA()>
+    <input type="button" value="Edit Phone" (click)=enableEPhone()>
+    <form [formGroup]="editPasswordRef" (ngSubmit)="updatePassword(editPasswordRef.value)" *ngIf="editPasswordFalg">
+        <label>Enter Current Email: </label>
+        <input type="text" formControlName="email"><br>
         <label>New Password</label>
-        <input type="password" formControlName="newpass"/><br/>
+        <input type="password" formControlName="password"/><br/>
         <input type="submit" value="Update Password" [disabled]="!editPasswordRef.valid"/>
     </form>
     <br/>
     {{passMsg}}
     <br/>
-    <form [formGroup]="editAddressRef" (ngSubmit)="updateAddress(editAddressRef.value)">
+    <form [formGroup]="editAddressRef" (ngSubmit)="updateAddress(editAddressRef.value)" *ngIf="editAddressFlag">
         <label>New Address</label>
-        <input type="text" formControlName="newaddress"/><br/>
+        <input type="text" formControlName="address"/><br/>
         <input type="submit" value="Update Address" [disabled]="!editAddressRef.valid"/>
     </form>
     <br/>
     {{addrMsg}}
     <br/>
-    <form [formGroup]="editEmailRef" (ngSubmit)="updateEmail(editEmailRef.value)">
+    <form [formGroup]="editEmailRef" (ngSubmit)="updateEmail(editEmailRef.value)" *ngIf="editEmailFalg">
         <label>New Email</label>
-        <input type="text" formControlName="newemail"/><br/>
+        <input type="text" formControlName="email"/><br/>
         <input type="submit" value="Update Email" [disabled]="!editEmailRef.valid"/>
     </form>
     <br/>
     {{emailMsg}}
     <br/>
-    <form [formGroup]="editPhoneRef" (ngSubmit)="updatePhone(editPhoneRef.value)">
+    <form [formGroup]="editPhoneRef" (ngSubmit)="updatePhone(editPhoneRef.value)" *ngIf="editPhoneFlag">
         <label>New Phone Number</label>
-        <input type="text" formControlName="newphone"/><br/>
+        <input type="text" formControlName="phone"/><br/>
         <input type="submit" value="Update Phone Number" [disabled]="!editPhoneRef.valid"/>
     </form>
     <br/>
