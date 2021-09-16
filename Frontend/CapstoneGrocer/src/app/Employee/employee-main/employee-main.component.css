@@ -1,6 +1,5 @@
 h1 {
-    text-align: center;
-    
+    text-align: center;  
 }
 
 .wrapper {
@@ -9,5 +8,13 @@ h1 {
     flex-direction: column; 
     justify-content: center;
     width: 100%;
+    padding: 10px;
     min-height: 100%;
+}
+
+#col{
+    box-shadow: 5px 5px 10px 1px #2f35f0;
+    border-color: black;
+    border-style: solid;
+    margin: 10px;
 }

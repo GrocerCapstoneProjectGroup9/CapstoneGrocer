@@ -1,8 +1,22 @@
 <body class = "wrapper">
-<h1>Welcome to Employee Main</h1>
-<app-update-order-status></app-update-order-status><br>
-<app-unlock-users></app-unlock-users><br>
-<app-send-request></app-send-request><br>
-<app-employee-edit-profile></app-employee-edit-profile><br>
-<app-logout></app-logout>
+<div class="container">
+    <h1>Welcome to Employee Main</h1>
+    <div class="row">
+        <div class="col-md-4" id="col">
+            <app-update-order-status></app-update-order-status><br>
+        </div>
+        <div class="col-md-4" id="col">
+            <app-unlock-users></app-unlock-users><br>
+        </div>
+        <div class="col-md-3" id="col">
+            <app-send-request></app-send-request><br>
+        </div>   
+    </div>
+    <div class="row" id="col">
+            <app-employee-edit-profile></app-employee-edit-profile><br>
+    </div>
+    <div class="row" id="col">
+            <app-logout></app-logout>
+    </div>
+</div>
 </body>
