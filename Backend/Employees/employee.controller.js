@@ -142,6 +142,7 @@ let insertEmployee = async (request,response)=> {
     let empl = request.body;    // receive the data from post method
     let emplInfo = await employeeModel.findOne({email:empl.email});
     if(emplInfo==null){
+        empl.password="welcome123"
         let result = await employeeModel.insertMany(empl);
         
         response.send("Employee created successfully");
