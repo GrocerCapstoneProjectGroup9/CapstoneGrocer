@@ -257,6 +257,7 @@ let lockUser=(request,response)=>{
         }
     })
 }
+
 module.exports={signIn,
     signUp,
     addItemtoCart,

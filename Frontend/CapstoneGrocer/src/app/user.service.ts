@@ -18,6 +18,10 @@ export class UserService {
     return this.http.put('http://localhost:9090/api/user/addItemtoCart/'+email,item,
     {responseType:'text'})
   }
+  getItemsFromCart(email:any):Observable<any>{
+    console.log(email);
+    return this.http.get('http://localhost:9090/api/user/getCartItems/'+email)
+  }
 
 
   storeTicketData(data: any): Observable<any> {

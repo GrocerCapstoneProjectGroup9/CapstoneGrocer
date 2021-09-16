@@ -11,8 +11,9 @@ let Saleschema = mongoose.Schema({
            price:Number,
            quantity:Number,
            datePurchased:String,
-           orderStatus:String,
+          
        }],
+       orderStatus:String,
        total:Number
 })
 let SalesModel = mongoose.model("SoldItems",Saleschema);

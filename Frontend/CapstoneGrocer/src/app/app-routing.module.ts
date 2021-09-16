@@ -26,7 +26,7 @@ const routes: Routes = [
 
   //User component paths
   {path:"raise-ticket",component:RaiseTicketComponent},
-  {path:"user-main/:email",component:UserMainComponent},
+  {path:"user-main",component:UserMainComponent},
   {path:"cart",component:CartComponent},
   {path:"user-sign-up", component:SignUpComponent},
   {path:"user-sign-in", component:UserSignInComponent},
