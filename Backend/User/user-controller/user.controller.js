@@ -259,12 +259,14 @@ let lockUser=(request,response)=>{
 }
 
 
-let addFunds=(res,req)=>
+let addFunds=(req,res)=>
 {
+     
+    
     let money = req.body.money;
     let id = req.body.id;
-
-    UserModel.findOneAndUpdate({_id:id},{$set:{funds:money}},(err,result)=>
+    console.log(money+id)
+    UserModel.updateOne({email:id},{$set:{funds:money}},(err,result)=>
     {
         if(!err)
         {   
