@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { employee } from './employee.model'
+import { Login } from './User/login';
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +18,16 @@ export class EmployeeService {
   }
 
   //send request
-  storerequest(message:any,email:any){
-    return this.http.post("http://localhost:9090/api/employee/storerequest",{message:message,email:email});
+  storerequest(email:any,id:any,amount:any,message:any){
+    return this.http.post("http://localhost:9090/api/employee/storerequest",{email:email,id:id,amount:amount,message:message},{
+      responseType: 'text',
+    })
+    .subscribe(
+      (result) => {
+        console.log(result)
+      },
+      (error) => console.log(error)
+    );
   }
 
   //update status
@@ -58,16 +67,10 @@ export class EmployeeService {
     
   }
 
-  storeEmployee(newEmployee: any): void {
-    this.http
-      .post('http://localhost:9090/api/employee/addEmployee', newEmployee, {
-        responseType: 'text',
-      })
-      .subscribe(
-        (result) => console.log(result),
-        (error) => console.log(error)
-      );
-
+  storeEmployee(newEmpl:any):Observable<any>{
+      return this.http.post("http://localhost:9090/api/employee/addEmployee",{firstName:newEmpl.firstName, lastName:newEmpl.lastName, email:newEmpl.password},
+      {responseType:'text'});
+    
 
 
   }

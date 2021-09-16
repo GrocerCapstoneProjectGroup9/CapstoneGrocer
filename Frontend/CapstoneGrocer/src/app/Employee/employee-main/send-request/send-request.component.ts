@@ -12,18 +12,24 @@ export class SendRequestComponent implements OnInit {
   constructor(
     public employee:EmployeeService
   ) { }
+  
+  result="";
 
   ngOnInit(): void {
   }
 
   //change the temp names
   sendrequest(requestRef:NgForm){
-    let msg = requestRef.value.request;
+    let msg = requestRef.value.message;
+    let id = requestRef.value.id;
+    let amount = requestRef.value.amount;
     let emp = sessionStorage.getItem("activeUser");
     if (emp!=null){
       let empjson = JSON.parse(emp);
       let email = empjson.email;
-      this.employee.storerequest(msg,email);
+      console.log(email,id,amount,msg)
+      this.employee.storerequest(email,id,amount,msg);
+      this.result="Request Sent";
     }
   }
 

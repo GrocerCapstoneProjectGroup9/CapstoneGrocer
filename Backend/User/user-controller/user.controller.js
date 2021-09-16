@@ -265,19 +265,31 @@ let addFunds=(req,res)=>
     
     let money = req.body.money;
     let id = req.body.id;
+
     console.log(money+id)
-    UserModel.updateOne({email:id},{$set:{funds:money}},(err,result)=>
-    {
-        if(!err)
-        {   
-            if (result.nModified > 0 || result.matchedCount > 0){
-                res.send('Funds Added.');
+    UserModel.findOne({email:id},(err, result)=>
+    {   
+        console.log(money);
+        money += result.funds;
+        console.log(result.funds);
+        console.log(money);
+        UserModel.updateOne({email:id},{$set:{funds:money}},(err,result)=>
+        {
+            if(!err)
+            {   
+                if (result.nModified > 0 || result.matchedCount > 0){
+                    res.send('Funds Added.');
+                }
+                else{
+                    res.send('Account not found.');
+                }
             }
-            else{
-                res.send('Account not found.');
-            }
-        }
+        });
     });
+
+    
+
+    
 }
 let getUser=(request,response)=>{
     let email=request.params.email;

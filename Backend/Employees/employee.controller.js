@@ -21,15 +21,13 @@ let getEmployeeByEmail = (req,res) =>
 
 
 //Store request to admin
-//needs change based on request model
 let storerequest = (req,res) => {
     let message = req.body.message;
     let email = req.body.email;
-    let request = new requestmodel({
-        email:email,
-        message:message
-    });
-    requestModel.insertMany([request],(err,result)=>{
+    let id = req.body.id;
+    let amount = req.body.amount;
+    let request = new requestModel({empID:email,productID:id,productName:amount,reqMsg:message});
+    requestModel.insertMany(request,(err,result)=>{
         if (!err){
             res.send("Request added");
         }
@@ -41,7 +39,7 @@ let storerequest = (req,res) => {
 let changestatus = (req,res) => {
     let status = req.body.status;
     let orderid = req.body.orderid;
-    orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,result) => {
+    orderModel.updateOne({_id:orderid},{$set:{orderStatus:status}},(err,result) => {
         if(!err){
             if (result.modifiedCount > 0){
                 res.send('Status updated.');
@@ -57,17 +55,8 @@ let changestatus = (req,res) => {
                 let refund = res.total;
                 userModel.find({_id:res.userId},(error,result)=>{
                     if(!error){
-                        refund = refund + result.funds;
-                        userModel.updateOne({_id:res.userId},{$set:{funds:refund}},(error1,temp)=>{
-                            if(!error1){
-                                if (result.modifiedCount > 0){
-                                    res.send('Refund given.');
-                                }
-                                else{
-                                    res.send('Account not found');
-                                }
-                            }
-                        })
+                        refund = refund + res.funds;
+                        userModel.updateOne({_id:res.userId},{$set:{funds:refund}})
                     }
                 })
             }
@@ -123,22 +112,18 @@ let gettickets = (req,res) =>{
     })
 };
 
-let insertEmployee = (req, res) => {
-    let emp = new employeeModel({
-      fname: req.body.fname,
-      lname: req.body.lname,
-      email: req.body.email,
-      pass: 'welcome123',
-    });
-  
-    emp.save((err, result) => {
-      if (!err) {
-        res.send('Employee stored successfully');
-      } else {
-        res.send("Employee didn't get stored");
-      }
-    });
-  };
+let insertEmployee = async (request,response)=> {
+    let empl = request.body;    // receive the data from post method
+    let emplInfo = await employeeModel.findOne({email:empl.email});
+    if(emplInfo==null){
+        empl.password="welcome123"
+        let result = await employeeModel.insertMany(empl);
+        
+        response.send("Employee created successfully");
+    }else {
+        response.send("Email Id must be unique");
+    }    
+}
 
 
 module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail, insertEmployee};

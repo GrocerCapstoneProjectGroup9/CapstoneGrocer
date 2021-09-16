@@ -1,12 +1,19 @@
-let mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
+//load the module
+let mongoose = require("mongoose");
 
-let ProductSchema = mongoose.Schema({
+//avoid s and lower case
+mongoose.pluralize(null);
+
+//create the schema
+let productSchema = mongoose.Schema({
+    
     name:String,
-    price:Number,
-    quantity:Number
-})
+    quantity:Number,
+    price:Number
+});
 
-let ProductModel = mongoose.model("Product",ProductSchema,)
 
-module.exports = ProductModel;
+//using schema creating model
+let productModel = mongoose.model("Product",productSchema);
+//export here and import in another file using require
+module.exports = productModel;

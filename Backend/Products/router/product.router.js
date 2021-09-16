@@ -9,4 +9,13 @@ router.post("/storeProductDetails",ProductController.storeProdectDetails);
 router.delete("/deleteProductById/:pid",ProductController.deleteProdectById);
 router.put("/updateProductById",ProductController.updateProdectDetails);
 
-module.exports=router;
+
+
+
+router.post("/addProduct", productController.addProduct);
+router.delete("/deleteProduct", productController.deleteProduct);
+router.put("/updateProduct",productController.updateProduct);
+router.get("/getAllProducts",productController.getAll);
+
+
+module.exports = router;
