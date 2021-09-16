@@ -247,6 +247,16 @@ let getAllTickets=(request,response)=>{
         }
     })
 }
+let lockUser=(request,response)=>{
+ 
+    let email=request.params.email;
+    console.log(email)
+    UserModel.findOneAndUpdate({email:email},{$set:{locked:true}},(err,result)=>{
+        if(!err){
+            response.send("userLocked");
+        }
+    })
+}
 module.exports={signIn,
     signUp,
     addItemtoCart,
@@ -262,5 +272,6 @@ module.exports={signIn,
     getAllorders,
     getOrdersOfUser,
     RaiseTicket,
-    getAllTickets
+    getAllTickets,
+    lockUser
 };

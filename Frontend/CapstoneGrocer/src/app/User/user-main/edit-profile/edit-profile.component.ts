@@ -53,9 +53,19 @@ export class EditProfileComponent implements OnInit {
   }
 
   updateEmail(newEmail: any): void{
-    this.userProfile.updateEmail(newEmail,sessionStorage.getItem('curUserId'));
+    this.userProfile.updateEmail(newEmail,sessionStorage.getItem('curUserId'))    .subscribe(
+      (result) => {
+        if(result=="emailUpdated"){
+          this.emailMsg = 'Email updated'
+        }
+        else{
+          this.emailMsg='Email not Updated'
+        }
+      },
+      (error) => console.log(error)
+    );;
     sessionStorage.setItem('curUserId', newEmail.email);
-    this.emailMsg = 'Email updated'
+   
     this.editEmailRef.reset()
   }
 

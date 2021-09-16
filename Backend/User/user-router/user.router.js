@@ -33,4 +33,6 @@ router.get("/getAllOrders",UserController.getAllorders);
 router.post("/raiseTicket",UserController.RaiseTicket);
 //http://localhost:9090/api/user/getAllTickets
 router.get("/getAllTickets",UserController.getAllTickets);
+//http://localhost:9090/api/user/lockUser
+router.put("/lockUser/:email",UserController.lockUser)
 module.exports=router;

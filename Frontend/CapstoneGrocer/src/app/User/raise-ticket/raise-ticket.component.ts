@@ -32,6 +32,9 @@ export class RaiseTicketComponent implements OnInit {
         this.formflag=true;
         this.msg="Your Ticket Has been Submited Please Try After ticket resolved"
       }
+      else{
+        this.msg="Your Ticket Not Been Submitted"
+      }
     })
   }
 

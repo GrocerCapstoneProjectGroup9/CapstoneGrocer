@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/user.service';
 import { LoginService } from '../login.service';
 
 @Component({
@@ -15,9 +16,10 @@ export class SignInComponent implements OnInit {
     password:new FormControl()
   });
 
-  constructor(public loginSer:LoginService,
+  constructor(public loginSer:LoginService,public userSer:UserService,
     public router:Router) { }
     msg?:string
+    logincount:number=0;
 
   ngOnInit(): void {
   }
@@ -34,6 +36,12 @@ export class SignInComponent implements OnInit {
         this.router.navigate(["user-main",login.email]);
       }else {
           this.msg = result;
+          this.logincount++;
+          console.log(this.logincount);
+          console.log(sessionStorage.getItem('curUserId'))
+        
+            this.userSer.lockUser(login)
+          
       }
     },
     error=>console.log(error));
