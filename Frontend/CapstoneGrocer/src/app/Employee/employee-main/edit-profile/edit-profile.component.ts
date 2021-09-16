@@ -23,8 +23,8 @@ export class EditProfileComponent implements OnInit {
     let emp = sessionStorage.getItem("activeUser");
     if (emp!=null){
       let empjson = JSON.parse(emp);
-      let id = empjson._id;
-      this.employee.editpass(pass,id);
+      let email = empjson.email;
+      this.employee.editpass(pass,email);
     }
   }
 }

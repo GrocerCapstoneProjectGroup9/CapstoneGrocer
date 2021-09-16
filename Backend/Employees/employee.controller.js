@@ -4,7 +4,6 @@ let ticketModel = require('../User/user-model/ticket.model')
 let userModel = require('../User/user-model/user.model')
 let requestModel = require('../Requests/model/requests.model')
 let orderModel = require('../User/user-model/sales.model')
-//add admin model
 
 let getEmployeeByEmail = (req,res) =>
 {
@@ -19,92 +18,6 @@ let getEmployeeByEmail = (req,res) =>
         }
     });
 };
-
-let employeeUserDetails = (req,res) =>
-{
-    let employee = new employeeModel(
-        {
-            firstName:req.body.firstName,
-            lastName:req.body.lastName,
-            email:req.body.email,
-            password: 'defaultpassword'
-        });
-
-    employeeModel.save((err,result) =>
-    {
-        if(err)
-        {
-            res.send("Record save unsuccessful.");
-        }
-        else
-        {
-            res.send("Record saved successfully.");
-        }
-    })
-}
-
-let deleteEmployeeById = (req,res) =>
-{
-    let pid = req.params.pid;
-
-    employeeModel.deleteOne({_id:pid}, (err,result) => 
-    {
-        if(!err)
-        {
-            if(result.deletedCount > 0)
-            {
-                res.send('Employee deleted successfully.');
-            }
-            else
-            {
-                res.send('Employee with Id ' + pid + ' does not exist.')
-            }
-        }
-    })
-}
-
-let editEmployeeProfile = (req,res) =>
-{
-    let eid = req.body.eid;
-    let newEmail = req.body.email.trim();
-    let newFirstName = req.body.firstName.trim();
-    let newLastName = req.body.lastName.trim();
-    let newPassword = req.body.password.trim();
-
-    employeeModel.updateOne(
-        {_id: new ObjectId(eid)},
-        {
-            $set:
-            {
-                firstName:newFirstName,
-                lastName:newLastName,
-                email:newEmail,
-                password:newPassword
-            }
-        }
-    ).then((obj) => {console.log(obj);});
-}
-
-let changeEmployeePassword = (req,res) => 
-{
-    let eid = req.params.eid;
-    let newPassword = req.body.newPassword;
-    console.log(eid, newPassword)
-    employees.updateOne({_id: eid},{$set: {password: newPassword}}, (err, result) => 
-    {
-        if (!err) 
-        {
-        if (result.nModified > 0) 
-        {
-            res.send('Employee password updated successfully.');
-        } 
-        else
-        {
-            res.send('Employee with Id ' + eid + ' does not exist.');
-        }
-        }
-    });
-}
 
 
 //Store request to admin
@@ -124,8 +37,8 @@ let storerequest = (req,res) => {
 //Changes the status of an order
 //needs change based on sale model
 let changestatus = (req,res) => {
-    let status = req.params.status;
-    let orderid = req.params.orderid;
+    let status = req.body.status;
+    let orderid = req.body.orderid;
     orderModel.updateOne({_id:orderid},{$set:{status:status}},(err,res) => {
         if(!err){
             if (result.nModified > 0){
@@ -163,8 +76,8 @@ let changestatus = (req,res) => {
 //unlocks a user account
 //might need to search for email
 let unlockuser = (req,res) => {
-    let id = req.body.user;
-    userModel.updateOne({_id:id},{$set:{locked:false}},(err,res) => {
+    let email = req.body.email;
+    userModel.updateOne({email:email},{$set:{locked:false}},(err,res) => {
         if(!err){
             if (result.nModified > 0){
                 res.send('User unlocked.');
@@ -179,9 +92,9 @@ let unlockuser = (req,res) => {
 
 //changes the employee password
 let editpass = (req,res) => {
-    let pass = req.params.pass;
-    let id = req.params.id;
-    employeeModel.updateOne({_id:id},{$set: {password:pass}}, (err,result) =>{
+    let pass = req.body.pass;
+    let email = req.body.email;
+    employeeModel.updateOne({email:email},{$set: {password:pass}}, (err,result) =>{
         if (!err){
             if (result.nModified > 0){
                 res.send('Password updated.');
@@ -203,4 +116,4 @@ let gettickets = (req,res) =>{
 }
 
 
-module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, employeeUserDetails, deleteEmployeeById, editEmployeeProfile, getEmployeeByEmail, changeEmployeePassword };
+module.exports = {gettickets, editpass, unlockuser, changestatus, storerequest, getEmployeeByEmail};
