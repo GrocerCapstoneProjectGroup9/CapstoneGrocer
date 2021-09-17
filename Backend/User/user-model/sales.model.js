@@ -4,6 +4,7 @@ mongoose.Promise = global.Promise;
 
 let Saleschema = mongoose.Schema({
        _id:Number,
+ 
        userId:String, //this is userId
        items: [{
            pid:String,
@@ -15,5 +16,6 @@ let Saleschema = mongoose.Schema({
        orderStatus:String,
        total:Number
 })
+
 let SalesModel = mongoose.model("SoldItems",Saleschema);
 module.exports = SalesModel;

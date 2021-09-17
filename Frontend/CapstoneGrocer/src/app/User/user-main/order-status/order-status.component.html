@@ -1,2 +1,60 @@
-<p>order-status works!</p>
-<button class="btn btn-primary" (click)="gotoHome()"><a routerLink="/user-main"></a>Go to Shop</button><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">    
+
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light ">
+        <a class="navbar-brand font-weight-bold text-success" href="#">
+            <img src="https://cdn-icons-png.flaticon.com/512/135/135532.png" width="50" height="50" alt=""> Grocery.Com
+        </a>
+        <form class="form-inline my-2 my-lg-0">
+    
+            <button class="btn btn-primary" (click)="gotoHome()" style="margin: 10px;"><a routerLink="/user-main"></a>Go to Shop</button><br>
+    
+            <app-logout></app-logout>
+        </form>
+    
+    </nav>
+    <nav class="navbar navbar-light bg-dark ">
+        <ul class="nav">
+            <li class="active text-monospace font-weight-bold">
+                <a class="nav-link text-monospace text-light " routerLink="/funds">Order-Status <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="active text-monospace font-weight-bold">
+                <p class="nav-link text-monospace text-light "></p>
+            </li>
+        </ul>
+       
+    </nav>
+    <div style="text-align: center;">
+        <h2>Cart Details</h2>
+        <br>
+     
+     
+        <div>
+            <table border="1" style="margin-left: auto;margin-right: auto;">
+                <tr>
+                    <th>Id</th>
+                    <th>UserId</th>
+                    <th>Title</th>
+                    <th>Completed</th>
+                </tr>
+                <tr *ngFor="let order of orders" >   
+                    <td>{{order.userId}}</td>
+               
+                   
+                </tr>
+            </table>
+           
+        </div>
+        <br>
+    
+    </div>
+</body>
+</html>

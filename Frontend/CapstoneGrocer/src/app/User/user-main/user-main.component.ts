@@ -19,6 +19,7 @@ export class UserMainComponent implements OnInit {
   })
   cartcont:number=0;
   products:any;
+  un:any=sessionStorage.getItem('curUserId');
   constructor(public userSer:UserService,
     public router:Router) { }
 

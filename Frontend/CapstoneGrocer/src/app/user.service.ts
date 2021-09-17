@@ -94,8 +94,11 @@ export class UserService {
 
   }
   placeOrder(ietm:any,email:any):Observable<any>{
-    return this.http.put('http://localhost:9090/api/user/purchase/'+email,ietm)  }
+    return this.http.put('http://localhost:9090/api/user/purchase/'+email,ietm,{responseType:'text'}) }
   emptyCart(email:any):Observable<any>{
-    return this.http.delete("http://localhost:9090/api/user/EmptyCart/"+email)
+    return this.http.delete("http://localhost:9090/api/user/EmptyCart/"+email,{responseType:'text'})
+  }
+  getOrderofUser(email:any):Observable<any>{
+    return this.http.get("http://localhost:9090/api/user/getOrderofUser/"+email);
   }
 }
