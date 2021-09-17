@@ -5,7 +5,7 @@ mongoose.Promise = global.Promise;
 
 let Saleschema = mongoose.Schema({
        _id:Number,
-       // orderid:{ type: Number, default: 0 },
+        orderid:Number,
        userId:String, //this is userId
        items: [{
            pid:String,

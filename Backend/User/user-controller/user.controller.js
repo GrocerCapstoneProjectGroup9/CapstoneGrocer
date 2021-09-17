@@ -186,7 +186,7 @@ let addItemtoSales = async (request,response)=>{
     console.log(orderDetails);
     SalesModel.insertMany({userId:userId,
         items:orderDetails,
-        total:request.body.total,orderStatus:"Ordered",orderid:{$inc:{seq:1}}},(err,result)=>{
+        total:request.body.total,orderStatus:"Ordered",orderid:1},(err,result)=>{
             if(!err){
                 response.send("ItemAddedToSales");
             }
