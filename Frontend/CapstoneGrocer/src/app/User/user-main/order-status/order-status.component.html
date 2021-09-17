@@ -33,7 +33,7 @@
        
     </nav>
     <div style="text-align: center;">
-        <h2>Cart Details</h2>
+        <h2>Orders Details</h2>
         <br>
      
      
@@ -41,12 +41,12 @@
             <table border="1" style="margin-left: auto;margin-right: auto;">
                 <tr>
                     <th>Id</th>
-                    <th>UserId</th>
-                    <th>Title</th>
-                    <th>Completed</th>
+                    <th>Order Status</th>
+                  
                 </tr>
                 <tr *ngFor="let order of orders" >   
-                    <td>{{order._id}}</td>
+                    <td>{{order.orderid}}</td>
+                    <td>{{order.orderStatus}}
                
                    
                 </tr>
