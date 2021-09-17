@@ -1,5 +1,5 @@
-<div>
-    <h2>Account Creation</h2>
+<div style="text-align:center;border-radius: 10px; border-style:solid;">
+    <h2>User Account Creation</h2>
     <form [formGroup]="loginRef" (ngSubmit)="accountCreate()">
         <label>First Name</label>
         <input type="text" formControlName="fname"/><br/>
@@ -17,5 +17,6 @@
     </form>
     <a routerLink="/user-sign-in">Sign In</a>
     <br/>
+    <a routerLink=".." class="nav-link">Back</a><br>
     {{msg}}
 </div>
