@@ -1,5 +1,5 @@
-<div>
-    <h2>Login Page</h2>
+<div style="text-align:center;border-radius: 10px; border-style:solid;">
+    <h2>User Login Page</h2>
     <form [formGroup]="loginRef" (ngSubmit)="checkUser()">
         <label>Email</label>
         <input type="text" formControlName="email"/><br/>
@@ -10,6 +10,7 @@
     <br/>
     <a routerLink="/user-sign-up">Sign Up</a>
     <br/>
+    <a routerLink=".." class="nav-link">Back</a><br>
     {{msg}}
     
 </div>
