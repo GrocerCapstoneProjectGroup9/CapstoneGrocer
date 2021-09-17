@@ -1,7 +1,10 @@
 <h1>Update Order</h1>
 <h2>List of Orders</h2>
 <body *ngFor="let i of result">
-    Order Id: {{i._id}}     Status: {{i.orderStatus}}   Items: {{i.items}}
+    Order Id: {{i._id}}     Status: {{i.orderStatus}}
+    <body *ngFor="let j of i.items">
+        Items ID: {{j.pid}}
+    </body>    
     <br>
 </body>
 <div>
