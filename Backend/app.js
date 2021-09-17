@@ -6,6 +6,7 @@ let userRouter=require("./User/user-router/user.router");
 let employeeRouter = require("./Employees/employee.router")
 let adminRouter=require("./Admin/router/admin.router")
 let productRouter=require("./Products/router/product.router")
+//const autoIncrement=require("mongoose-sequence")(mongoose);
 let app=express();
 
 app.use(cors());
