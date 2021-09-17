@@ -23,10 +23,11 @@ export class EditProfileComponent implements OnInit {
   changepass(editpass:NgForm){
     let pass = editpass.value.pass;
     let emp = sessionStorage.getItem("activeUser");
+    console.log(emp);
     if (emp!=null){
       let empjson = JSON.parse(emp);
       let email = empjson.email;
-      this.employee.editpass(pass,email);
+      this.employee.editpass(pass,email).subscribe();
       this.result = "Password Changed to "+pass;
     }
   }
