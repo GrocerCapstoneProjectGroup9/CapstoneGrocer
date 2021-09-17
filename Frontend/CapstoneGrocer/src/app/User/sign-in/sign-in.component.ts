@@ -43,7 +43,7 @@ export class SignInComponent implements OnInit {
           this.userSer.lockUser(login).subscribe(result=>{
             console.log(result)
             if(result=="userLocked"){
-              this.msg="You have been lcoked! Please try agin later"
+              this.msg="You have been locked! Please try again later"
             }
           })
 
